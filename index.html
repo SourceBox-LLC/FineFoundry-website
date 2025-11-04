@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FineFoundry - Dataset Curation & Model Fine-Tuning Studio</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css?v=20251103-1">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="bi bi-gear-fill"></i> FineFoundry
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#documentation">Documentation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#community">Community</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-6">
+                    <h1 class="display-3 fw-bold mb-4">Desktop Studio for Dataset Curation & Fine-Tuning</h1>
+                    <p class="lead mb-4">A powerful desktop application to scrape, merge, analyze, build datasets, and fine-tune models. Train on RunPod or locally, then ship to Hugging Face Hub.</p>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <a href="#features" class="btn btn-primary btn-lg">
+                            <i class="bi bi-play-circle-fill me-2"></i>Explore Features
+                        </a>
+                        <a href="https://github.com/SourceBox-LLC/FineFoundry" target="_blank" class="btn btn-outline-light btn-lg">
+                            <i class="bi bi-github me-2"></i>View on GitHub
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <img src="img/FineFoundry-logo.png" alt="FineFoundry logo" class="hero-logo img-fluid">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-5">
+                    <h2 class="display-4 fw-bold">What is FineFoundry?</h2>
+                    <p class="lead text-muted">A complete desktop studio for ML dataset curation and model fine-tuning</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-12">
+                    <div class="card h-100 shadow-sm border-0">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <i class="bi bi-tools text-primary fs-1 me-3"></i>
+                                <h3 class="mb-0">All-in-One ML Data Pipeline</h3>
+                            </div>
+                            <p>FineFoundry is a native desktop application built with Flet that streamlines the entire machine learning data workflow. From scraping raw data to fine-tuning models, everything happens in one intuitive interface.</p>
+                            <div class="row mt-4">
+                                <div class="col-md-6">
+                                    <h5><i class="bi bi-list-check text-primary me-2"></i>Data Collection</h5>
+                                    <ul class="list-unstyled ms-4">
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Scrape from 4chan, Reddit, Stack Exchange</li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Contextual and adjacent pairing modes</li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Robust text cleaning and preprocessing</li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Configurable filters and parameters</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5><i class="bi bi-graph-up text-primary me-2"></i>Dataset Management</h5>
+                                    <ul class="list-unstyled ms-4">
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Merge multiple datasets seamlessly</li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Comprehensive dataset analysis</li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Build train/val/test splits</li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Push to Hugging Face Hub with auto-generated cards</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-md-6">
+                                    <h5><i class="bi bi-lightning-charge-fill text-primary me-2"></i>Model Training</h5>
+                                    <ul class="list-unstyled ms-4">
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Train on RunPod or locally with Docker</li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>LoRA and parameter-efficient fine-tuning</li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Auto-resume from checkpoints</li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Direct Hub integration for model uploads</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h5><i class="bi bi-eye-fill text-primary me-2"></i>Analysis & Insights</h5>
+                                    <ul class="list-unstyled ms-4">
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Sentiment and toxicity analysis</li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Duplicate detection and similarity metrics</li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Class balance and distribution insights</li>
+                                        <li><i class="bi bi-check-circle-fill text-success me-2"></i>Data leakage detection</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <a href="https://github.com/SourceBox-LLC/FineFoundry" target="_blank" class="btn btn-primary mt-3">
+                                <i class="bi bi-github me-2"></i>View Repository
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-5">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-12 text-center">
+                    <h2 class="display-4 fw-bold">Features</h2>
+                    <p class="lead text-muted">Everything you need for dataset curation and model fine-tuning</p>
+                </div>
+            </div>
+
+            <!-- Core Features -->
+            <div class="row g-4 mb-5">
+                <div class="col-md-4">
+                    <div class="feature-card text-center p-4">
+                        <i class="bi bi-search feature-icon text-primary"></i>
+                        <h4>Multi-Source Scraping</h4>
+                        <p class="text-muted">Scrape conversational data from 4chan, Reddit, and Stack Exchange with contextual pairing and robust cleaning.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card text-center p-4">
+                        <i class="bi bi-layers-fill feature-icon text-primary"></i>
+                        <h4>Dataset Merging</h4>
+                        <p class="text-muted">Combine multiple JSON files or Hugging Face datasets into unified training sets with automatic column mapping.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card text-center p-4">
+                        <i class="bi bi-bar-chart-fill feature-icon text-primary"></i>
+                        <h4>Comprehensive Analysis</h4>
+                        <p class="text-muted">Analyze datasets with sentiment, toxicity, duplicates, class balance, and data leakage detection modules.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card text-center p-4">
+                        <i class="bi bi-box-seam feature-icon text-primary"></i>
+                        <h4>Build & Publish</h4>
+                        <p class="text-muted">Create train/val/test splits and push to Hugging Face Hub with auto-generated dataset cards.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card text-center p-4">
+                        <i class="bi bi-lightning-charge feature-icon text-primary"></i>
+                        <h4>Flexible Training</h4>
+                        <p class="text-muted">Train models on RunPod with managed infrastructure or locally via Docker with full control.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card text-center p-4">
+                        <i class="bi bi-cpu feature-icon text-primary"></i>
+                        <h4>LoRA Fine-Tuning</h4>
+                        <p class="text-muted">Parameter-efficient fine-tuning with LoRA, packing support, and automatic checkpoint resumption.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technical Features -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h3 class="mb-4 text-center">Technical Highlights</h3>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="tech-feature">
+                        <i class="bi bi-window-desktop text-primary me-2"></i>
+                        <strong>Native Desktop App</strong>
+                        <p class="text-muted mb-0 small">Built with Flet for cross-platform native UI</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="tech-feature">
+                        <i class="bi bi-shield-lock-fill text-primary me-2"></i>
+                        <strong>Privacy-Focused</strong>
+                        <p class="text-muted mb-0 small">All processing happens locally on your machine</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="tech-feature">
+                        <i class="bi bi-cloud-arrow-up-fill text-primary me-2"></i>
+                        <strong>Hub Integration</strong>
+                        <p class="text-muted mb-0 small">Seamless Hugging Face Hub push and pull</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="tech-feature">
+                        <i class="bi bi-stack text-primary me-2"></i>
+                        <strong>Modular Architecture</strong>
+                        <p class="text-muted mb-0 small">Use as GUI or programmatic API</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="tech-feature">
+                        <i class="bi bi-shuffle text-primary me-2"></i>
+                        <strong>Contextual Pairing</strong>
+                        <p class="text-muted mb-0 small">Quote-chain, cumulative, and adjacent modes</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="tech-feature">
+                        <i class="bi bi-server text-primary me-2"></i>
+                        <strong>RunPod Automation</strong>
+                        <p class="text-muted mb-0 small">Automated pod and network volume management</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="tech-feature">
+                        <i class="bi bi-download text-primary me-2"></i>
+                        <strong>Dataset Download</strong>
+                        <p class="text-muted mb-0 small">Download merged datasets directly from the UI</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="tech-feature">
+                        <i class="bi bi-file-earmark-code text-primary me-2"></i>
+                        <strong>MIT Licensed</strong>
+                        <p class="text-muted mb-0 small">Open source and free to use</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documentation Section -->
+    <section id="documentation" class="py-5 bg-light">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-12 text-center">
+                    <h2 class="display-4 fw-bold">Documentation</h2>
+                    <p class="lead text-muted">Get started with FineFoundry in minutes</p>
+                </div>
+            </div>
+
+            <!-- Quick Start -->
+            <div class="row mb-5">
+                <div class="col-lg-12">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-body p-4">
+                            <h3 class="mb-4"><i class="bi bi-rocket-takeoff-fill text-primary me-2"></i>Quick Start</h3>
+
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <h5>Installation</h5>
+                                    <p class="text-muted">Clone and set up the environment</p>
+
+                                    <pre class="bg-dark text-light p-3 rounded"><code>git clone https://github.com/SourceBox-LLC/FineFoundry.git
+cd FineFoundry
+
+# Create virtual environment
+python -m venv venv
+
+# Activate (Windows PowerShell)
+./venv/Scripts/Activate.ps1
+
+# Activate (macOS/Linux)
+source venv/bin/activate
+
+# Install dependencies
+pip install -r requirements.txt</code></pre>
+                                </div>
+
+                                <div class="col-md-6 mb-4">
+                                    <h5>Launch the App</h5>
+                                    <p class="text-muted">Start the desktop application</p>
+
+                                    <pre class="bg-dark text-light p-3 rounded"><code># Run the GUI
+python src/main.py
+
+# Or use Flet directly
+flet run src/main.py</code></pre>
+
+                                    <p class="mt-3">The desktop window will open with tabs for Scrape, Build/Publish, Training, Merge, Analysis, and Settings.</p>
+                                </div>
+                            </div>
+
+                            <div class="alert alert-info mt-3">
+                                <i class="bi bi-info-circle-fill me-2"></i>
+                                <strong>Prerequisites:</strong> Python 3.10+ on Windows, macOS, or Linux. Optional: Hugging Face account for Hub integration.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Usage Guide -->
+            <div class="row mb-5">
+                <div class="col-lg-12">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-body p-4">
+                            <h3 class="mb-4"><i class="bi bi-book text-primary me-2"></i>Usage Guide</h3>
+
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <div class="usage-card p-3 border rounded">
+                                        <h5><i class="bi bi-search text-primary me-2"></i>Scrape Tab</h5>
+                                        <p class="text-muted small mb-2">Scrape conversational data from multiple sources</p>
+                                        <ul class="small mb-0">
+                                            <li>Select boards/sources to scrape</li>
+                                            <li>Configure parameters (max threads, pairs, delay)</li>
+                                            <li>Monitor live progress and stats</li>
+                                            <li>Preview dataset before saving</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="usage-card p-3 border rounded">
+                                        <h5><i class="bi bi-hammer text-primary me-2"></i>Build/Publish Tab</h5>
+                                        <p class="text-muted small mb-2">Create and publish datasets to Hub</p>
+                                        <ul class="small mb-0">
+                                            <li>Build train/val/test splits with sliders</li>
+                                            <li>Configure shuffle, seed, and filters</li>
+                                            <li>Push to Hugging Face Hub</li>
+                                            <li>Auto-generate dataset cards</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="usage-card p-3 border rounded">
+                                        <h5><i class="bi bi-gpu-card text-primary me-2"></i>Training Tab</h5>
+                                        <p class="text-muted small mb-2">Fine-tune models on RunPod or locally</p>
+                                        <ul class="small mb-0">
+                                            <li>Select dataset source and base model</li>
+                                            <li>Configure hyperparameters and LoRA</li>
+                                            <li>Train on RunPod pods or local Docker</li>
+                                            <li>Auto-resume and Hub push support</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="usage-card p-3 border rounded">
+                                        <h5><i class="bi bi-shuffle text-primary me-2"></i>Merge Datasets Tab</h5>
+                                        <p class="text-muted small mb-2">Combine multiple datasets seamlessly</p>
+                                        <ul class="small mb-0">
+                                            <li>Merge JSON files and Hub datasets</li>
+                                            <li>Automatic column mapping</li>
+                                            <li>Filter empty rows and normalize</li>
+                                            <li>Download merged results</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="usage-card p-3 border rounded">
+                                        <h5><i class="bi bi-pie-chart text-primary me-2"></i>Dataset Analysis Tab</h5>
+                                        <p class="text-muted small mb-2">Comprehensive dataset insights</p>
+                                        <ul class="small mb-0">
+                                            <li>Toggle modules: sentiment, toxicity, etc.</li>
+                                            <li>Detect duplicates and data leakage</li>
+                                            <li>Analyze class balance and distribution</li>
+                                            <li>View readability and alignment metrics</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="usage-card p-3 border rounded">
+                                        <h5><i class="bi bi-gear text-primary me-2"></i>Settings Tab</h5>
+                                        <p class="text-muted small mb-2">Configure integrations and preferences</p>
+                                        <ul class="small mb-0">
+                                            <li>Save Hugging Face access token</li>
+                                            <li>Configure proxy settings per scraper</li>
+                                            <li>Set up RunPod API key</li>
+                                            <li>Ollama integration for dataset cards</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CLI Usage -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-body p-4">
+                            <h3 class="mb-4"><i class="bi bi-terminal text-primary me-2"></i>CLI & Programmatic Usage</h3>
+
+                            <p>FineFoundry also supports command-line and programmatic usage for automation and scripting.</p>
+
+                            <h6 class="mt-3">Reddit Scraper CLI</h6>
+                            <pre class="bg-dark text-light p-3 rounded"><code>python src/scrapers/reddit_scraper.py \
+  --url https://www.reddit.com/r/AskReddit/ \
+  --max-posts 50 \
+  --mode contextual \
+  --pairs-path reddit_pairs.json</code></pre>
+
+                            <h6 class="mt-3">Dataset Builder CLI</h6>
+                            <pre class="bg-dark text-light p-3 rounded"><code># Configure constants in src/save_dataset.py
+python src/save_dataset.py</code></pre>
+
+                            <h6 class="mt-3">Programmatic 4chan Scraper</h6>
+                            <pre class="bg-dark text-light p-3 rounded"><code>from scrapers.fourchan_scraper import scrape
+
+pairs = scrape(
+    board="pol",
+    max_threads=150,
+    max_pairs=5000,
+    mode="contextual",
+    strategy="cumulative"
+)</code></pre>
+
+                            <div class="alert alert-success mt-3">
+                                <i class="bi bi-book-fill me-2"></i>
+                                <strong>Full Documentation:</strong> Visit the <a href="https://github.com/SourceBox-LLC/FineFoundry/blob/main/README.md" target="_blank">GitHub README</a> and <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/main/docs" target="_blank">docs folder</a> for comprehensive guides.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section id="community" class="py-5">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-12 text-center">
+                    <h2 class="display-4 fw-bold">Community & Support</h2>
+                    <p class="lead text-muted">Join the FineFoundry community</p>
+                </div>
+            </div>
+
+            <div class="row g-4 mb-5">
+                <div class="col-md-12">
+                    <div class="card h-100 shadow-sm border-0">
+                        <div class="card-body p-4 text-center">
+                            <i class="bi bi-github display-4 text-primary mb-3"></i>
+                            <h4>FineFoundry-Core</h4>
+                            <p class="text-muted">Desktop studio for dataset curation and model fine-tuning</p>
+                            <a href="https://github.com/SourceBox-LLC/FineFoundry" target="_blank" class="btn btn-outline-primary btn-lg">
+                                <i class="bi bi-github me-2"></i>View Repository
+                            </a>
+                            <div class="mt-3">
+                                <a href="https://github.com/SourceBox-LLC/FineFoundry/issues" target="_blank" class="btn btn-sm btn-outline-secondary me-2">
+                                    <i class="bi bi-bug-fill me-1"></i>Report Issues
+                                </a>
+                                <a href="https://github.com/SourceBox-LLC/FineFoundry/pulls" target="_blank" class="btn btn-sm btn-outline-secondary">
+                                    <i class="bi bi-code-slash me-1"></i>Pull Requests
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contributing -->
+            <div class="row mb-5">
+                <div class="col-lg-12">
+                    <div class="card shadow-sm border-0 bg-primary text-white">
+                        <div class="card-body p-4">
+                            <h3 class="mb-3"><i class="bi bi-heart-fill me-2"></i>Contributing</h3>
+                            <p class="mb-3">FineFoundry is open source and welcomes contributions! Whether you're adding new scrapers, improving analysis modules, enhancing the UI, or fixing bugs, your input is valuable.</p>
+                            <div class="d-flex gap-3 flex-wrap">
+                                <a href="https://github.com/SourceBox-LLC/FineFoundry/fork" target="_blank" class="btn btn-light">
+                                    <i class="bi bi-git me-2"></i>Fork Repository
+                                </a>
+                                <a href="https://github.com/SourceBox-LLC/FineFoundry/blob/main/docs/README.md" target="_blank" class="btn btn-outline-light">
+                                    <i class="bi bi-book me-2"></i>Documentation
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tech Stack -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-body p-4">
+                            <h3 class="mb-4 text-center"><i class="bi bi-stack text-primary me-2"></i>Technology Stack</h3>
+                            <div class="row text-center">
+                                <div class="col-6 col-md-3 mb-3">
+                                    <div class="tech-badge">
+                                        <i class="bi bi-python display-6 text-primary"></i>
+                                        <p class="mt-2 mb-0 fw-bold">Python 3.10+</p>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3 mb-3">
+                                    <div class="tech-badge">
+                                        <i class="bi bi-window-desktop display-6 text-primary"></i>
+                                        <p class="mt-2 mb-0 fw-bold">Flet</p>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3 mb-3">
+                                    <div class="tech-badge">
+                                        <i class="bi bi-database-fill display-6 text-primary"></i>
+                                        <p class="mt-2 mb-0 fw-bold">Datasets (HF)</p>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3 mb-3">
+                                    <div class="tech-badge">
+                                        <i class="bi bi-box-seam display-6 text-primary"></i>
+                                        <p class="mt-2 mb-0 fw-bold">Docker</p>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3 mb-3">
+                                    <div class="tech-badge">
+                                        <i class="bi bi-lightning-charge-fill display-6 text-primary"></i>
+                                        <p class="mt-2 mb-0 fw-bold">PyTorch</p>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3 mb-3">
+                                    <div class="tech-badge">
+                                        <i class="bi bi-cloud-upload display-6 text-primary"></i>
+                                        <p class="mt-2 mb-0 fw-bold">RunPod</p>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3 mb-3">
+                                    <div class="tech-badge">
+                                        <i class="bi bi-hdd-network-fill display-6 text-primary"></i>
+                                        <p class="mt-2 mb-0 fw-bold">Hugging Face Hub</p>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3 mb-3">
+                                    <div class="tech-badge">
+                                        <i class="bi bi-file-earmark-code display-6 text-primary"></i>
+                                        <p class="mt-2 mb-0 fw-bold">REST APIs</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="bi bi-gear-fill me-2"></i>FineFoundry</h5>
+                    <p class="text-muted">Desktop studio for dataset curation and model fine-tuning</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="text-muted mb-2">Licensed under MIT</p>
+                    <div class="social-links">
+                        <a href="https://github.com/SourceBox-LLC/FineFoundry" target="_blank" class="text-white me-3">
+                            <i class="bi bi-github fs-4"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-3 bg-secondary">
+            <div class="row">
+                <div class="col text-center">
+                    <p class="text-muted mb-0">&copy; 2024 FineFoundry. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+</body>
+</html>
