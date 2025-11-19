@@ -76,6 +76,95 @@
                     <p class="lead text-muted">A complete desktop studio for ML dataset curation and model fine-tuning</p>
                 </div>
             </div>
+
+            <!-- Changelog Section -->
+            <div class="row mb-5">
+                <div class="col-lg-12">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-body p-4">
+                            <h3 class="mb-4"><i class="bi bi-clock-history text-primary me-2"></i>Changelog</h3>
+                            <div class="accordion" id="changelogAccordion">
+                                <!-- Version 1.2.0 -->
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingOne">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                            <strong class="me-2">v1.2.0</strong> <span class="text-muted">- October 2025</span>
+                                        </button>
+                                    </h2>
+                                    <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#changelogAccordion">
+                                        <div class="accordion-body">
+                                            <h6 class="text-success"><i class="bi bi-plus-circle me-2"></i>Added</h6>
+                                            <ul>
+                                                <li>Inline preview of merged datasets with first 100 records</li>
+                                                <li>Raw dataset preview and ChatML preview integration</li>
+                                                <li>Comprehensive documentation guides and reorganized structure</li>
+                                            </ul>
+                                            <h6 class="text-info"><i class="bi bi-arrow-up-circle me-2"></i>Improved</h6>
+                                            <ul>
+                                                <li>Migrated from pip to uv for faster dependency management</li>
+                                                <li>Updated Hugging Face dataset integration and added huggingface-hub dependency</li>
+                                                <li>Removed unused imports and consolidated helper functions</li>
+                                                <li>Code cleanup and refactoring across main modules</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Version 1.1.0 -->
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingTwo">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            <strong class="me-2">v1.1.0</strong> <span class="text-muted">- September 2025</span>
+                                        </button>
+                                    </h2>
+                                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#changelogAccordion">
+                                        <div class="accordion-body">
+                                            <h6 class="text-success"><i class="bi bi-plus-circle me-2"></i>Added</h6>
+                                            <ul>
+                                                <li>ChatML format support with multiturn conversation capabilities</li>
+                                                <li>Standard pairs format option alongside ChatML for dataset output</li>
+                                                <li>n8n workflow dispatch inputs and callback notifications to CI pipeline</li>
+                                                <li>GitHub Actions workflow automation</li>
+                                            </ul>
+                                            <h6 class="text-info"><i class="bi bi-arrow-up-circle me-2"></i>Improved</h6>
+                                            <ul>
+                                                <li>Reorganized scrapers into dedicated module with updated imports</li>
+                                                <li>Enhanced scraper functionality with small patches and improvements</li>
+                                                <li>Simplified CI workflow by removing matrix strategy</li>
+                                                <li>Consolidated n8n callbacks into dedicated job</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Version 1.0.0 -->
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingThree">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            <strong class="me-2">v1.0.0</strong> <span class="text-muted">- September 2025</span>
+                                        </button>
+                                    </h2>
+                                    <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#changelogAccordion">
+                                        <div class="accordion-body">
+                                            <h6 class="text-success"><i class="bi bi-rocket-takeoff me-2"></i>Initial Release</h6>
+                                            <ul>
+                                                <li>Multi-source scraping (4chan, Reddit, Stack Exchange)</li>
+                                                <li>Dataset merging and analysis capabilities</li>
+                                                <li>Build and publish datasets to Hugging Face Hub</li>
+                                                <li>Model fine-tuning support on RunPod and local Docker</li>
+                                                <li>LoRA fine-tuning with checkpoint resumption</li>
+                                                <li>Native desktop application built with Flet</li>
+                                                <li>Comprehensive dataset analysis tools (sentiment, toxicity, duplicates)</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="row g-4">
                 <div class="col-md-12">
                     <div class="card h-100 shadow-sm border-0">
