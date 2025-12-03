@@ -2,19 +2,47 @@
 
 :root {
     --primary-color: #FFC107;
-    --dark-bg: #000000;
+    --dark-bg: #121212;
+    --dark-surface: #1e1e1e;
+    --dark-surface-alt: #2a2a2a;
+    --dark-border: #333;
+    --dark-text: #e0e0e0;
+    --dark-text-muted: #a0a0a0;
     --hero-bg: linear-gradient(135deg, #000000 0%, #D32F2F 55%, #FFC107 100%);
     --secondary-gradient: linear-gradient(135deg, #D32F2F 0%, #FF8F00 100%);
     --bs-primary: #FFC107;
     --bs-primary-rgb: 255, 193, 7;
     --bs-link-color: #FFC107;
     --bs-link-hover-color: #e0a800;
+    --bs-body-bg: #121212;
+    --bs-body-color: #e0e0e0;
 }
 
 /* Global Styles */
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     scroll-behavior: smooth;
+    background-color: var(--dark-bg);
+    color: var(--dark-text);
+}
+
+/* Dark theme sections (excluding hero) */
+section:not(.hero-section) {
+    background-color: var(--dark-bg) !important;
+    color: var(--dark-text);
+}
+
+section:not(.hero-section).bg-light {
+    background-color: var(--dark-surface) !important;
+}
+
+/* Dark theme text utilities */
+.text-muted {
+    color: var(--dark-text-muted) !important;
+}
+
+.display-4, .display-3, h1, h2, h3, h4, h5, h6 {
+    color: var(--dark-text);
 }
 
 /* Navigation */
@@ -93,16 +121,18 @@ body {
 
 /* Feature Cards */
 .feature-card {
-    background: white;
+    background: var(--dark-surface);
     border-radius: 12px;
     transition: all 0.3s ease;
     height: 100%;
-    border: 1px solid #e9ecef;
+    border: 1px solid var(--dark-border);
+    color: var(--dark-text);
 }
 
 .feature-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.4);
+    border-color: var(--primary-color);
 }
 
 .feature-icon {
@@ -114,25 +144,33 @@ body {
 /* Tech Features */
 .tech-feature {
     padding: 1rem;
-    background: white;
+    background: var(--dark-surface);
     border-radius: 8px;
-    border: 1px solid #e9ecef;
+    border: 1px solid var(--dark-border);
     transition: all 0.3s ease;
+    color: var(--dark-text);
 }
 
 .tech-feature:hover {
     border-color: var(--primary-color);
-    box-shadow: 0 4px 12px rgba(var(--bs-primary-rgb), 0.1);
+    box-shadow: 0 4px 12px rgba(var(--bs-primary-rgb), 0.2);
 }
 
 /* Cards */
 .card {
     border-radius: 12px;
     transition: all 0.3s ease;
+    background-color: var(--dark-surface) !important;
+    border: 1px solid var(--dark-border) !important;
+    color: var(--dark-text);
 }
 
 .card:hover {
-    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+
+.card-body {
+    color: var(--dark-text);
 }
 
 /* Code blocks */
@@ -149,12 +187,14 @@ pre code {
 /* Usage Cards */
 .usage-card {
     transition: all 0.3s ease;
-    background: white;
+    background: var(--dark-surface-alt);
+    border-color: var(--dark-border) !important;
+    color: var(--dark-text);
 }
 
 .usage-card:hover {
     border-color: var(--primary-color) !important;
-    box-shadow: 0 4px 12px rgba(var(--bs-primary-rgb), 0.15);
+    box-shadow: 0 4px 12px rgba(var(--bs-primary-rgb), 0.25);
     transform: translateY(-4px);
 }
 
@@ -256,16 +296,16 @@ section {
 }
 
 ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: var(--dark-surface);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #888;
+    background: #555;
     border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background: var(--primary-color);
 }
 
 /* Badge enhancements */
@@ -290,7 +330,56 @@ section {
 
 /* Card body padding consistency */
 .card-body h3, .card-body h4, .card-body h5 {
-    color: #212529;
+    color: var(--dark-text);
+}
+
+/* Accordion dark theme */
+.accordion-item {
+    background-color: var(--dark-surface) !important;
+    border-color: var(--dark-border) !important;
+}
+
+.accordion-button {
+    background-color: var(--dark-surface) !important;
+    color: var(--dark-text) !important;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: var(--dark-surface-alt) !important;
+    color: var(--primary-color) !important;
+}
+
+.accordion-button::after {
+    filter: invert(1);
+}
+
+.accordion-body {
+    background-color: var(--dark-surface) !important;
+    color: var(--dark-text);
+}
+
+/* Alert dark theme */
+.alert-info {
+    background-color: rgba(var(--bs-primary-rgb), 0.15) !important;
+    color: var(--dark-text) !important;
+    border: 1px solid rgba(var(--bs-primary-rgb), 0.3) !important;
+}
+
+.alert-success {
+    background-color: rgba(25, 135, 84, 0.15) !important;
+    color: var(--dark-text) !important;
+    border: 1px solid rgba(25, 135, 84, 0.3) !important;
+}
+
+/* List styling */
+ul, ol {
+    color: var(--dark-text);
+}
+
+/* Footer dark theme */
+footer {
+    background-color: var(--dark-bg) !important;
+    color: var(--dark-text);
 }
 
 /* GitHub link styling */
