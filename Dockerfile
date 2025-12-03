@@ -11,7 +11,7 @@ COPY index.html .
 COPY css/ ./css/
 COPY js/ ./js/
 COPY img/ ./img/
-COPY ["FineFoundry Website vid.mp4", "./"]
+COPY ["FineFoundry Demo.mp4", "./"]
 
 # Expose port 8000
 EXPOSE 8000
