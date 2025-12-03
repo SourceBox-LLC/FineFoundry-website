@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FineFoundry Documentation</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css?v=20251103-1">
+
+    <style>
+        .docs-hero {
+            padding: 120px 0 60px 0;
+            background: radial-gradient(circle at top left, rgba(255,193,7,0.25), transparent 55%),
+                        radial-gradient(circle at bottom right, rgba(211,47,47,0.35), transparent 55%),
+                        #000;
+            color: #fff;
+        }
+        .docs-hero h1 {
+            font-size: 3rem;
+        }
+        .docs-layout {
+            padding-top: 40px;
+            padding-bottom: 80px;
+        }
+        .docs-sidebar {
+            position: sticky;
+            top: 96px;
+        }
+        .docs-sidebar .list-group-item {
+            background-color: transparent;
+            border: none;
+            color: var(--dark-text);
+            padding-left: 0;
+        }
+        .docs-sidebar .list-group-item a {
+            color: inherit;
+        }
+        .docs-sidebar .list-group-item a:hover {
+            color: var(--primary-color);
+        }
+        .docs-section + .docs-section {
+            margin-top: 3rem;
+        }
+        .docs-section h3 {
+            margin-bottom: 1rem;
+        }
+        .docs-tagline {
+            max-width: 700px;
+        }
+        .docs-pill {
+            font-size: 0.75rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html#home">
+                <i class="bi bi-gear-fill"></i> FineFoundry
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#documentation">Docs Overview</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#top">Docs Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/SourceBox-LLC/FineFoundry" target="_blank">GitHub</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Docs Hero -->
+    <section id="top" class="docs-hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <span class="badge bg-warning text-dark docs-pill mb-3"><i class="bi bi-journal-text me-1"></i> FineFoundry Docs</span>
+                    <h1 class="fw-bold mb-3">FineFoundry Documentation</h1>
+                    <p class="lead docs-tagline mb-4">
+                        Everything you need to install, use, extend, and deploy FineFoundry—from quick-start guides to deep-dive developer docs, all organized for power users and contributors.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#getting-started" class="btn btn-primary btn-lg">
+                            <i class="bi bi-rocket-takeoff-fill me-2"></i>Start Here
+                        </a>
+                        <a href="#user-guides" class="btn btn-outline-light btn-lg">
+                            <i class="bi bi-people-fill me-2"></i>User Guides
+                        </a>
+                        <a href="#development" class="btn btn-outline-light">
+                            <i class="bi bi-code-slash me-2"></i>Developer Docs
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 mt-4 mt-lg-0 text-lg-end text-center">
+                    <i class="bi bi-journal-code display-1 text-warning"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Docs Layout -->
+    <section class="docs-layout">
+        <div class="container">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-lg-3 mb-4 mb-lg-0">
+                    <div class="docs-sidebar">
+                        <h6 class="text-muted text-uppercase mb-3">On this page</h6>
+                        <ul class="list-group list-unstyled">
+                            <li class="list-group-item"><a href="#getting-started"><i class="bi bi-rocket-takeoff-fill me-2"></i>Getting Started</a></li>
+                            <li class="list-group-item"><a href="#user-guides"><i class="bi bi-window-desktop me-2"></i>User Guides</a></li>
+                            <li class="list-group-item"><a href="#cli-api"><i class="bi bi-terminal me-2"></i>CLI &amp; API</a></li>
+                            <li class="list-group-item"><a href="#development"><i class="bi bi-code-slash me-2"></i>Development</a></li>
+                            <li class="list-group-item"><a href="#deployment"><i class="bi bi-box-seam me-2"></i>Deployment</a></li>
+                            <li class="list-group-item"><a href="#help"><i class="bi bi-question-circle me-2"></i>Help &amp; Troubleshooting</a></li>
+                        </ul>
+
+                        <div class="mt-4">
+                            <h6 class="text-muted text-uppercase mb-2">GitHub Docs</h6>
+                            <a href="https://github.com/SourceBox-LLC/FineFoundry" target="_blank" class="d-block small mb-1">
+                                <i class="bi bi-github me-1"></i> Repository
+                            </a>
+                            <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs" target="_blank" class="d-block small mb-1">
+                                <i class="bi bi-folder2-open me-1"></i> Docs directory
+                            </a>
+                            <a href="https://github.com/SourceBox-LLC/FineFoundry/blob/master/docs/README.md" target="_blank" class="d-block small">
+                                <i class="bi bi-journal-text me-1"></i> Docs index (README)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main content -->
+                <div class="col-lg-9">
+                    <!-- Getting Started -->
+                    <div id="getting-started" class="docs-section">
+                        <h3 class="fw-bold"><i class="bi bi-rocket-takeoff-fill text-primary me-2"></i>Getting Started</h3>
+                        <p class="text-muted">New to FineFoundry? Follow this path to get productive in minutes.</p>
+
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body p-4">
+                                        <h5 class="mb-2">Quick Start</h5>
+                                        <p class="small text-muted mb-3">End-to-end walkthrough: install, launch the GUI, and run your first scrape &amp; training job.</p>
+                                        <ol class="small mb-3">
+                                            <li>Install Python and clone the repo.</li>
+                                            <li>Create &amp; activate a virtual environment.</li>
+                                            <li>Install dependencies.</li>
+                                            <li>Run the GUI via <code>python src/main.py</code> or <code>flet run src/main.py</code>.</li>
+                                        </ol>
+                                        <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs/user-guide" target="_blank" class="btn btn-sm btn-outline-primary">
+                                            Open Quick Start in GitHub
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body p-4">
+                                        <h5 class="mb-2">Installation &amp; Requirements</h5>
+                                        <p class="small text-muted mb-3">Detailed platform-specific instructions, prerequisites, and common setup pitfalls.</p>
+                                        <ul class="small mb-3">
+                                            <li>Python 3.10+ on Windows, macOS, or Linux.</li>
+                                            <li>Optional: Hugging Face account &amp; token for Hub integration.</li>
+                                            <li>Optional: RunPod account for cloud training.</li>
+                                        </ul>
+                                        <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs/user-guide" target="_blank" class="btn btn-sm btn-outline-primary">
+                                            View installation docs
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- User Guides -->
+                    <div id="user-guides" class="docs-section">
+                        <h3 class="fw-bold"><i class="bi bi-window-desktop text-primary me-2"></i>User Guides (GUI)</h3>
+                        <p class="text-muted">Deep-dive guides for each tab in the desktop app, mirroring the GitHub user-guide docs.</p>
+
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body p-4">
+                                        <h5 class="mb-2"><i class="bi bi-search me-2 text-primary"></i>Scrape Tab</h5>
+                                        <p class="small text-muted">Configure multi-source scraping (4chan, Reddit, Stack Exchange) with contextual pairing and filters.</p>
+                                        <ul class="small mb-3">
+                                            <li>Board/source selection &amp; thread limits.</li>
+                                            <li>Pairing modes (contextual, adjacent, cumulative).</li>
+                                            <li>Rate limiting, deduplication, and cleaning.</li>
+                                            <li>Live progress and dataset preview.</li>
+                                        </ul>
+                                        <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs/user-guide" target="_blank" class="btn btn-sm btn-outline-primary">Scrape tab guide</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body p-4">
+                                        <h5 class="mb-2"><i class="bi bi-hammer me-2 text-primary"></i>Build &amp; Publish Tab</h5>
+                                        <p class="small text-muted">Build train/val/test splits and publish datasets directly to Hugging Face Hub.</p>
+                                        <ul class="small mb-3">
+                                            <li>Split configuration &amp; shuffling.</li>
+                                            <li>Dataset cards &amp; metadata.</li>
+                                            <li>Push to Hub workflow.</li>
+                                            <li>Artifact layout and versioning.</li>
+                                        </ul>
+                                        <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs/user-guide" target="_blank" class="btn btn-sm btn-outline-primary">Build &amp; publish guide</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body p-4">
+                                        <h5 class="mb-2"><i class="bi bi-gpu-card me-2 text-primary"></i>Training Tab</h5>
+                                        <p class="small text-muted">Configure and run LoRA-style fine-tuning on RunPod or locally, with configuration presets.</p>
+                                        <ul class="small mb-3">
+                                            <li>Base model &amp; dataset selection.</li>
+                                            <li>Hyperparameters &amp; LoRA settings.</li>
+                                            <li>Run configurations saved for quick reruns.</li>
+                                            <li>Unsloth &amp; PyTorch integration for inference after successful runs.</li>
+                                        </ul>
+                                        <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs/user-guide" target="_blank" class="btn btn-sm btn-outline-primary">Training tab guide</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body p-4">
+                                        <h5 class="mb-2"><i class="bi bi-shuffle me-2 text-primary"></i>Merge &amp; Analysis Tabs</h5>
+                                        <p class="small text-muted">Combine multiple datasets and run quality checks before training.</p>
+                                        <ul class="small mb-3">
+                                            <li>Merge JSON and Hub datasets with automatic column mapping.</li>
+                                            <li>Filters, normalization, and download of merged results.</li>
+                                            <li>Sentiment, toxicity, duplicates, and leakage analysis.</li>
+                                            <li>Class balance and distribution visualizations.</li>
+                                        </ul>
+                                        <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs/user-guide" target="_blank" class="btn btn-sm btn-outline-primary">Merge &amp; analysis guides</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body p-4">
+                                        <h5 class="mb-2"><i class="bi bi-gear me-2 text-primary"></i>Settings &amp; Authentication</h5>
+                                        <p class="small text-muted">Centralized configuration for tokens, proxies, and backend integrations.</p>
+                                        <ul class="small mb-3">
+                                            <li>Hugging Face tokens and Hub settings.</li>
+                                            <li>RunPod API key and defaults.</li>
+                                            <li>Proxy settings per scraper (including Tor).</li>
+                                            <li>Ollama and other helper integrations.</li>
+                                        </ul>
+                                        <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs/user-guide" target="_blank" class="btn btn-sm btn-outline-primary">Settings &amp; auth docs</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CLI & API -->
+                    <div id="cli-api" class="docs-section">
+                        <h3 class="fw-bold"><i class="bi bi-terminal text-primary me-2"></i>CLI &amp; API</h3>
+                        <p class="text-muted">Automate FineFoundry workflows or integrate them into your own pipelines.</p>
+
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body p-4">
+                                        <h5 class="mb-2">CLI Tools</h5>
+                                        <p class="small text-muted">Command-line entrypoints for scraping, dataset building, and more.</p>
+                                        <ul class="small mb-3">
+                                            <li>Reddit scraper CLI with URL, max-posts, and mode options.</li>
+                                            <li>Dataset builder CLI for batch dataset creation.</li>
+                                            <li>Standardized logging and progress output.</li>
+                                        </ul>
+                                        <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs/user-guide" target="_blank" class="btn btn-sm btn-outline-primary">CLI usage docs</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body p-4">
+                                        <h5 class="mb-2">Python APIs</h5>
+                                        <p class="small text-muted">Use FineFoundry programmatically: scrapers, dataset builder, and training interfaces.</p>
+                                        <ul class="small mb-3">
+                                            <li>Scrapers API (4chan, Reddit, Stack Exchange).</li>
+                                            <li>Dataset builder for programmatic merges and splits.</li>
+                                            <li>Training API for scripted fine-tuning runs.</li>
+                                        </ul>
+                                        <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs/api" target="_blank" class="btn btn-sm btn-outline-primary">API reference on GitHub</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Development -->
+                    <div id="development" class="docs-section">
+                        <h3 class="fw-bold"><i class="bi bi-code-slash text-primary me-2"></i>Development</h3>
+                        <p class="text-muted">For contributors and advanced users extending FineFoundry.</p>
+
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body p-4">
+                                        <h5 class="mb-2">Project Structure &amp; Code Style</h5>
+                                        <p class="small text-muted">Understand how the codebase is organized and how to keep contributions consistent.</p>
+                                        <ul class="small mb-3">
+                                            <li>High-level layout of <code>src/</code>, scrapers, UI, and utilities.</li>
+                                            <li>Code style and formatting guidelines.</li>
+                                            <li>Recommended development environment.</li>
+                                        </ul>
+                                        <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs/development" target="_blank" class="btn btn-sm btn-outline-primary">Development docs</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body p-4">
+                                        <h5 class="mb-2">Logging, Testing &amp; Contributing</h5>
+                                        <p class="small text-muted">Instrumentation, test strategy, and contribution workflow.</p>
+                                        <ul class="small mb-3">
+                                            <li>Central logging configuration and log levels.</li>
+                                            <li>Running and writing tests.</li>
+                                            <li>Opening issues and pull requests.</li>
+                                        </ul>
+                                        <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs/development" target="_blank" class="btn btn-sm btn-outline-primary">Contributing guide</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Deployment -->
+                    <div id="deployment" class="docs-section">
+                        <h3 class="fw-bold"><i class="bi bi-box-seam text-primary me-2"></i>Deployment</h3>
+                        <p class="text-muted">Run FineFoundry in containers or cloud environments.</p>
+
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body p-4">
+                                        <h5 class="mb-2">Docker &amp; Local Containers</h5>
+                                        <p class="small text-muted">Use Docker images for reproducible local or server deployments.</p>
+                                        <ul class="small mb-3">
+                                            <li>Base images and build arguments.</li>
+                                            <li>Volume mounts and dataset persistence.</li>
+                                            <li>Networking and resource configuration.</li>
+                                        </ul>
+                                        <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs/deployment" target="_blank" class="btn btn-sm btn-outline-primary">Docker deployment docs</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body p-4">
+                                        <h5 class="mb-2">RunPod &amp; Proxy Configuration</h5>
+                                        <p class="small text-muted">Configure RunPod workloads and optional proxy layers (including Tor).</p>
+                                        <ul class="small mb-3">
+                                            <li>RunPod templates &amp; volume management.</li>
+                                            <li>Proxy setup for scrapers.</li>
+                                            <li>Security and ethical scraping guidelines.</li>
+                                        </ul>
+                                        <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs/deployment" target="_blank" class="btn btn-sm btn-outline-primary">RunPod &amp; proxy docs</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Help & Troubleshooting -->
+                    <div id="help" class="docs-section mb-5">
+                        <h3 class="fw-bold"><i class="bi bi-question-circle text-primary me-2"></i>Help &amp; Troubleshooting</h3>
+                        <p class="text-muted">Resolve common issues and learn about ethical use.</p>
+
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body p-4">
+                                        <h5 class="mb-2">FAQ &amp; Common Issues</h5>
+                                        <p class="small text-muted">Quick answers to the most frequent questions.</p>
+                                        <ul class="small mb-3">
+                                            <li>Installation and environment problems.</li>
+                                            <li>Scraper connection and rate-limit errors.</li>
+                                            <li>Training failures and debugging tips.</li>
+                                        </ul>
+                                        <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs/user-guide" target="_blank" class="btn btn-sm btn-outline-primary">FAQ &amp; troubleshooting</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body p-4">
+                                        <h5 class="mb-2">Ethical &amp; Legal Notes</h5>
+                                        <p class="small text-muted">Guidance on scraping, dataset usage, and model deployment.</p>
+                                        <ul class="small mb-3">
+                                            <li>Respecting terms of service and robots policies.</li>
+                                            <li>Handling sensitive and toxic content.</li>
+                                            <li>Attribution and licensing considerations.</li>
+                                        </ul>
+                                        <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs/user-guide" target="_blank" class="btn btn-sm btn-outline-primary">Ethical &amp; legal docs</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-info mt-4">
+                            <div class="d-flex flex-wrap align-items-center justify-content-between">
+                                <div class="me-3">
+                                    <strong>Need more?</strong>
+                                    <span class="ms-2">Open GitHub Issues or Discussions to get help or propose improvements.</span>
+                                </div>
+                                <div class="mt-3 mt-md-0">
+                                    <a href="https://github.com/SourceBox-LLC/FineFoundry/issues" target="_blank" class="btn btn-sm btn-outline-primary me-2"><i class="bi bi-bug-fill me-1"></i>Issues</a>
+                                    <a href="https://github.com/SourceBox-LLC/FineFoundry/discussions" target="_blank" class="btn btn-sm btn-outline-primary"><i class="bi bi-people-fill me-1"></i>Discussions</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 border-top border-secondary mt-auto">
+        <div class="container text-center small text-muted">
+            <div>FineFoundry &mdash; Dataset Curation &amp; Model Fine-Tuning Studio</div>
+            <div class="mt-1">
+                <a href="https://github.com/SourceBox-LLC/FineFoundry" target="_blank" class="text-decoration-none">View on GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
