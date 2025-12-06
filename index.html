@@ -50,7 +50,7 @@
             <div class="row align-items-center min-vh-100">
                 <div class="col-lg-6">
                     <h1 class="display-3 fw-bold mb-4">Desktop Studio for Dataset Curation & Fine-Tuning</h1>
-                    <p class="lead mb-4">A powerful desktop application to scrape, merge, analyze, build datasets, and fine-tune models. Train on RunPod or locally, then ship to Hugging Face Hub.</p>
+                    <p class="lead mb-4">A powerful desktop application to scrape, merge, analyze, build datasets, and fine-tune models with an Unsloth-based LoRA training stack. Train on RunPod or locally, run fully local inference, then ship to Hugging Face Hub.</p>
                     <div class="d-flex gap-3 flex-wrap">
                         <a href="#features" class="btn btn-primary btn-lg">
                             <i class="bi bi-play-circle-fill me-2"></i>Explore Features
@@ -103,7 +103,7 @@
                                         <div class="accordion-body">
                                             <h6 class="text-success"><i class="bi bi-plus-circle me-2"></i>Added</h6>
                                             <ul>
-                                                <li>Unsloth and PyTorch integration for fine-tuned model inference in the Training tab after successful runs</li>
+                                                <li>Unsloth-based LoRA training image and shared local inference stack powering the Training and Inference tabs</li>
                                             </ul>
                                             <h6 class="text-info"><i class="bi bi-arrow-up-circle me-2"></i>Improved</h6>
                                             <ul>
@@ -319,14 +319,14 @@
                     <div class="feature-card text-center p-4">
                         <i class="bi bi-lightning-charge feature-icon text-primary"></i>
                         <h4>Flexible Training</h4>
-                        <p class="text-muted">Train models on RunPod with managed infrastructure or locally via Docker with full control.</p>
+                        <p class="text-muted">Train models on RunPod or locally via Docker using an Unsloth-based LoRA fine-tuning stack with shared configs and outputs.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="feature-card text-center p-4">
                         <i class="bi bi-cpu feature-icon text-primary"></i>
                         <h4>LoRA Fine-Tuning</h4>
-                        <p class="text-muted">Parameter-efficient fine-tuning with LoRA, packing support, and automatic checkpoint resumption.</p>
+                        <p class="text-muted">Parameter-efficient fine-tuning with LoRA via Unsloth, packing support, and automatic checkpoint resumption.</p>
                     </div>
                 </div>
             </div>
@@ -389,6 +389,13 @@
                 </div>
                 <div class="col-md-6 col-lg-3">
                     <div class="tech-feature">
+                        <i class="bi bi-lightning-charge-fill text-primary me-2"></i>
+                        <strong>Unsloth Fine-Tuning Stack</strong>
+                        <p class="text-muted mb-0 small">LoRA training built on PyTorch, Transformers, PEFT, and bitsandbytes.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="tech-feature">
                         <i class="bi bi-file-earmark-code text-primary me-2"></i>
                         <strong>MIT Licensed</strong>
                         <p class="text-muted mb-0 small">Open source and free to use</p>
@@ -417,13 +424,20 @@
 
                             <div class="row">
                                 <div class="col-md-6 mb-4">
-                                    <h5>Installation</h5>
-                                    <p class="text-muted">Clone and set up the environment</p>
+                                    <h5>Installation (uv recommended)</h5>
+                                    <p class="text-muted">Clone the repo and run with <code>uv</code>, or use a classic virtualenv.</p>
 
-                                    <pre class="bg-dark text-light p-3 rounded"><code>git clone https://github.com/SourceBox-LLC/FineFoundry.git
-cd FineFoundry
+                                    <pre class="bg-dark text-light p-3 rounded"><code># Recommended: uv (matches project docs)
+git clone https://github.com/SourceBox-LLC/FineFoundry.git FineFoundry-Core
+cd FineFoundry-Core
 
-# Create virtual environment
+# Install uv if needed
+pip install uv
+
+# Run the app (creates an isolated env and installs deps)
+uv run src/main.py
+
+# Alternative: classic venv + pip
 python -m venv venv
 
 # Activate (Windows PowerShell)
@@ -440,13 +454,16 @@ pip install -r requirements.txt</code></pre>
                                     <h5>Launch the App</h5>
                                     <p class="text-muted">Start the desktop application</p>
 
-                                    <pre class="bg-dark text-light p-3 rounded"><code># Run the GUI
+                                    <pre class="bg-dark text-light p-3 rounded"><code># If using uv (recommended)
+uv run src/main.py
+
+# If using a virtualenv + pip
 python src/main.py
 
 # Or use Flet directly
 flet run src/main.py</code></pre>
 
-                                    <p class="mt-3">The desktop window will open with tabs for Scrape, Build/Publish, Training, Merge, Analysis, and Settings.</p>
+                                    <p class="mt-3">The desktop window will open with tabs for Scrape, Build/Publish, Training, Inference, Merge, Analysis, and Settings.</p>
                                 </div>
                             </div>
 
@@ -555,7 +572,15 @@ flet run src/main.py</code></pre>
                             <p>FineFoundry also supports command-line and programmatic usage for automation and scripting.</p>
 
                             <h6 class="mt-3">Reddit Scraper CLI</h6>
-                            <pre class="bg-dark text-light p-3 rounded"><code>python src/scrapers/reddit_scraper.py \
+                            <pre class="bg-dark text-light p-3 rounded"><code># Using uv (recommended)
+uv run src/scrapers/reddit_scraper.py \
+  --url https://www.reddit.com/r/AskReddit/ \
+  --max-posts 50 \
+  --mode contextual \
+  --pairs-path reddit_pairs.json
+
+# Or with activated venv
+python src/scrapers/reddit_scraper.py \
   --url https://www.reddit.com/r/AskReddit/ \
   --max-posts 50 \
   --mode contextual \
@@ -563,10 +588,12 @@ flet run src/main.py</code></pre>
 
                             <h6 class="mt-3">Dataset Builder CLI</h6>
                             <pre class="bg-dark text-light p-3 rounded"><code># Configure constants in src/save_dataset.py
+uv run src/save_dataset.py
+# or
 python src/save_dataset.py</code></pre>
 
                             <h6 class="mt-3">Programmatic 4chan Scraper</h6>
-                            <pre class="bg-dark text-light p-3 rounded"><code>from scrapers.fourchan_scraper import scrape
+                            <pre class="bg-dark text-light p-3 rounded"><code>from src.scrapers.fourchan_scraper import scrape
 
 pairs = scrape(
     board="pol",
@@ -578,7 +605,7 @@ pairs = scrape(
 
                             <div class="alert alert-success mt-3">
                                 <i class="bi bi-book-fill me-2"></i>
-                                <strong>Full Documentation:</strong> Visit the <a href="https://github.com/SourceBox-LLC/FineFoundry/blob/main/README.md" target="_blank">GitHub README</a> and <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/main/docs" target="_blank">docs folder</a> for comprehensive guides.
+                                <strong>Full Documentation:</strong> Visit the <a href="https://github.com/SourceBox-LLC/FineFoundry/blob/master/README.md" target="_blank">GitHub README</a> and <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs" target="_blank">docs folder</a> for comprehensive guides.
                             </div>
                             <div class="text-center mt-4">
                                 <a href="docs.html" class="btn btn-primary btn-lg">
@@ -636,7 +663,7 @@ pairs = scrape(
                                 <a href="https://github.com/SourceBox-LLC/FineFoundry/fork" target="_blank" class="btn btn-light">
                                     <i class="bi bi-git me-2"></i>Fork Repository
                                 </a>
-                                <a href="https://github.com/SourceBox-LLC/FineFoundry/blob/main/docs/README.md" target="_blank" class="btn btn-outline-light">
+                                <a href="https://github.com/SourceBox-LLC/FineFoundry/blob/master/docs/README.md" target="_blank" class="btn btn-outline-light">
                                     <i class="bi bi-book me-2"></i>Documentation
                                 </a>
                             </div>
@@ -698,6 +725,30 @@ pairs = scrape(
                                     <div class="tech-badge">
                                         <i class="bi bi-file-earmark-code display-6 text-primary"></i>
                                         <p class="mt-2 mb-0 fw-bold">REST APIs</p>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3 mb-3">
+                                    <div class="tech-badge">
+                                        <i class="bi bi-lightning-charge display-6 text-primary"></i>
+                                        <p class="mt-2 mb-0 fw-bold">Unsloth</p>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3 mb-3">
+                                    <div class="tech-badge">
+                                        <i class="bi bi-gear-wide-connected display-6 text-primary"></i>
+                                        <p class="mt-2 mb-0 fw-bold">Transformers</p>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3 mb-3">
+                                    <div class="tech-badge">
+                                        <i class="bi bi-layers display-6 text-primary"></i>
+                                        <p class="mt-2 mb-0 fw-bold">PEFT / LoRA</p>
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-3 mb-3">
+                                    <div class="tech-badge">
+                                        <i class="bi bi-memory display-6 text-primary"></i>
+                                        <p class="mt-2 mb-0 fw-bold">bitsandbytes</p>
                                     </div>
                                 </div>
                             </div>

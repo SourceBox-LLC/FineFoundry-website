@@ -161,10 +161,10 @@
                                         <h5 class="mb-2">Quick Start</h5>
                                         <p class="small text-muted mb-3">End-to-end walkthrough: install, launch the GUI, and run your first scrape &amp; training job.</p>
                                         <ol class="small mb-3">
-                                            <li>Install Python and clone the repo.</li>
-                                            <li>Create &amp; activate a virtual environment.</li>
-                                            <li>Install dependencies.</li>
-                                            <li>Run the GUI via <code>python src/main.py</code> or <code>flet run src/main.py</code>.</li>
+                                            <li>Install Python 3.10+ and clone the repo.</li>
+                                            <li>Install <code>uv</code> (<code>pip install uv</code>) if needed.</li>
+                                            <li>Run <code>uv run src/main.py</code> (handles deps automatically).</li>
+                                            <li>Or use a venv + pip: <code>pip install -r requirements.txt</code> then <code>python src/main.py</code>.</li>
                                         </ol>
                                         <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs/user-guide" target="_blank" class="btn btn-sm btn-outline-primary">
                                             Open Quick Start in GitHub
@@ -179,6 +179,7 @@
                                         <p class="small text-muted mb-3">Detailed platform-specific instructions, prerequisites, and common setup pitfalls.</p>
                                         <ul class="small mb-3">
                                             <li>Python 3.10+ on Windows, macOS, or Linux.</li>
+                                            <li><code>uv</code> (recommended) or pip for package management.</li>
                                             <li>Optional: Hugging Face account &amp; token for Hub integration.</li>
                                             <li>Optional: RunPod account for cloud training.</li>
                                         </ul>
@@ -231,12 +232,12 @@
                                 <div class="card h-100 shadow-sm border-0">
                                     <div class="card-body p-4">
                                         <h5 class="mb-2"><i class="bi bi-gpu-card me-2 text-primary"></i>Training Tab</h5>
-                                        <p class="small text-muted">Configure and run LoRA-style fine-tuning on RunPod or locally, with configuration presets.</p>
+                                        <p class="small text-muted">Configure and run LoRA-style fine-tuning on RunPod or locally using an Unsloth-based trainer image, with configuration presets.</p>
                                         <ul class="small mb-3">
                                             <li>Base model &amp; dataset selection.</li>
                                             <li>Hyperparameters &amp; LoRA settings.</li>
                                             <li>Run configurations saved for quick reruns.</li>
-                                            <li>Unsloth &amp; PyTorch integration for inference after successful runs.</li>
+                                            <li>Shared Unsloth/PyTorch-based local inference helpers after successful runs.</li>
                                         </ul>
                                         <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs/user-guide" target="_blank" class="btn btn-sm btn-outline-primary">Training tab guide</a>
                                     </div>
@@ -254,6 +255,21 @@
                                             <li>Class balance and distribution visualizations.</li>
                                         </ul>
                                         <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs/user-guide" target="_blank" class="btn btn-sm btn-outline-primary">Merge &amp; analysis guides</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card h-100 shadow-sm border-0">
+                                    <div class="card-body p-4">
+                                        <h5 class="mb-2"><i class="bi bi-chat-dots me-2 text-primary"></i>Inference Tab</h5>
+                                        <p class="small text-muted">Run local inference against fine-tuned adapters with prompt history and Full Chat View.</p>
+                                        <ul class="small mb-3">
+                                            <li>Select any adapter directory and validate immediately.</li>
+                                            <li>Prompt &amp; responses view or Full Chat View dialog.</li>
+                                            <li>Powered by Transformers + PEFT + bitsandbytes (local, no external APIs).</li>
+                                            <li>Compatible with Unsloth-trained adapters from Training tab.</li>
+                                        </ul>
+                                        <a href="https://github.com/SourceBox-LLC/FineFoundry/blob/master/docs/user-guide/inference-tab.md" target="_blank" class="btn btn-sm btn-outline-primary">Inference tab guide</a>
                                     </div>
                                 </div>
                             </div>
@@ -358,12 +374,12 @@
                             <div class="col-md-6">
                                 <div class="card h-100 shadow-sm border-0">
                                     <div class="card-body p-4">
-                                        <h5 class="mb-2">Docker &amp; Local Containers</h5>
-                                        <p class="small text-muted">Use Docker images for reproducible local or server deployments.</p>
+                                        <h5 class="mb-2">Docker &amp; Local Training</h5>
+                                        <p class="small text-muted">Run local training jobs using the Unsloth-based trainer image.</p>
                                         <ul class="small mb-3">
-                                            <li>Base images and build arguments.</li>
-                                            <li>Volume mounts and dataset persistence.</li>
-                                            <li>Networking and resource configuration.</li>
+                                            <li>Default image: <code>docker.io/sbussiso/unsloth-trainer:latest</code>.</li>
+                                            <li>Volume mounts for datasets and adapter outputs.</li>
+                                            <li>Same LoRA stack as RunPod (PyTorch, Transformers, PEFT, bitsandbytes).</li>
                                         </ul>
                                         <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs/deployment" target="_blank" class="btn btn-sm btn-outline-primary">Docker deployment docs</a>
                                     </div>
@@ -372,12 +388,12 @@
                             <div class="col-md-6">
                                 <div class="card h-100 shadow-sm border-0">
                                     <div class="card-body p-4">
-                                        <h5 class="mb-2">RunPod &amp; Proxy Configuration</h5>
-                                        <p class="small text-muted">Configure RunPod workloads and optional proxy layers (including Tor).</p>
+                                        <h5 class="mb-2">RunPod &amp; Cloud Training</h5>
+                                        <p class="small text-muted">Run training jobs on RunPod pods with the Unsloth trainer image.</p>
                                         <ul class="small mb-3">
-                                            <li>RunPod templates &amp; volume management.</li>
-                                            <li>Proxy setup for scrapers.</li>
-                                            <li>Security and ethical scraping guidelines.</li>
+                                            <li>Automated network volume and pod template setup.</li>
+                                            <li>Same Unsloth-based LoRA stack as local Docker.</li>
+                                            <li>Outputs written to <code>/data/outputs/...</code> on network volume.</li>
                                         </ul>
                                         <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs/deployment" target="_blank" class="btn btn-sm btn-outline-primary">RunPod &amp; proxy docs</a>
                                     </div>
