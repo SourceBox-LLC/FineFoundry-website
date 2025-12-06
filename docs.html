@@ -10,50 +10,123 @@
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css?v=20251103-1">
+    <link rel="stylesheet" href="css/style.css?v=20251206-2">
 
     <style>
         .docs-hero {
-            padding: 120px 0 60px 0;
+            padding: 100px 0 40px 0;
             background: radial-gradient(circle at top left, rgba(255,193,7,0.25), transparent 55%),
                         radial-gradient(circle at bottom right, rgba(211,47,47,0.35), transparent 55%),
                         #000;
             color: #fff;
         }
         .docs-hero h1 {
-            font-size: 3rem;
+            font-size: 2.5rem;
         }
-        .docs-layout {
-            padding-top: 40px;
-            padding-bottom: 80px;
+        .docs-content {
+            padding-top: 30px;
+            padding-bottom: 60px;
         }
-        .docs-sidebar {
+        .docs-sidebar-wrapper {
             position: sticky;
-            top: 96px;
+            top: 70px;
+            max-height: calc(100vh - 90px);
+            overflow-y: auto;
         }
-        .docs-sidebar .list-group-item {
-            background-color: transparent;
-            border: none;
-            color: var(--dark-text);
-            padding-left: 0;
+        .docs-sidebar .nav-link {
+            color: var(--dark-text-muted);
+            font-size: 0.875rem;
+            padding: 0.5rem 0.75rem;
+            border-left: 3px solid transparent;
+            margin-bottom: 2px;
+            border-radius: 0;
         }
-        .docs-sidebar .list-group-item a {
-            color: inherit;
-        }
-        .docs-sidebar .list-group-item a:hover {
+        .docs-sidebar .nav-link:hover {
             color: var(--primary-color);
+            background-color: rgba(var(--bs-primary-rgb), 0.1);
+            border-left-color: rgba(var(--bs-primary-rgb), 0.5);
         }
-        .docs-section + .docs-section {
-            margin-top: 3rem;
+        .docs-sidebar .nav-link.active {
+            color: var(--primary-color);
+            background-color: rgba(var(--bs-primary-rgb), 0.15);
+            border-left-color: var(--primary-color);
+            font-weight: 600;
         }
-        .docs-section h3 {
+        .docs-sidebar .nav-link i {
+            width: 20px;
+            text-align: center;
+        }
+        .docs-sidebar .nav-section {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--dark-text-muted);
+            padding: 1rem 0.75rem 0.5rem;
+            margin-top: 0.5rem;
+        }
+        .docs-sidebar .nav-section:first-child {
+            margin-top: 0;
+            padding-top: 0;
+        }
+        .doc-section {
+            scroll-margin-top: 90px;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--dark-border);
+            margin-bottom: 2rem;
+        }
+        .doc-section:last-child {
+            border-bottom: none;
+        }
+        .doc-section h2 {
+            font-size: 1.75rem;
             margin-bottom: 1rem;
         }
-        .docs-tagline {
-            max-width: 700px;
+        .doc-section h3 {
+            font-size: 1.25rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--primary-color);
         }
-        .docs-pill {
-            font-size: 0.75rem;
+        .doc-section h4 {
+            font-size: 1rem;
+            margin-top: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        .doc-section pre {
+            margin: 1rem 0;
+        }
+        .doc-section ul, .doc-section ol {
+            margin-bottom: 1rem;
+        }
+        .doc-section li {
+            margin-bottom: 0.25rem;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .feature-box {
+            background: var(--dark-surface-alt);
+            border: 1px solid var(--dark-border);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+        .feature-box strong {
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+        .tip-box {
+            background: rgba(var(--bs-primary-rgb), 0.1);
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1rem 0;
+        }
+        .tip-box strong {
+            color: var(--primary-color);
         }
     </style>
 </head>
@@ -61,7 +134,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="index.html#home">
+            <a class="navbar-brand" href="index.html">
                 <i class="bi bi-gear-fill"></i> FineFoundry
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -73,13 +146,15 @@
                         <a class="nav-link" href="index.html#home">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html#documentation">Docs Overview</a>
+                        <a class="nav-link" href="index.html#features">Features</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#top">Docs Home</a>
+                        <a class="nav-link active" href="#">Documentation</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://github.com/SourceBox-LLC/FineFoundry" target="_blank">GitHub</a>
+                        <a class="nav-link" href="https://github.com/SourceBox-LLC/FineFoundry" target="_blank">
+                            <i class="bi bi-github me-1"></i>GitHub
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -87,386 +162,854 @@
     </nav>
 
     <!-- Docs Hero -->
-    <section id="top" class="docs-hero">
+    <section class="docs-hero">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-8">
-                    <span class="badge bg-warning text-dark docs-pill mb-3"><i class="bi bi-journal-text me-1"></i> FineFoundry Docs</span>
+                    <span class="badge bg-warning text-dark mb-3"><i class="bi bi-journal-text me-1"></i> Official Documentation</span>
                     <h1 class="fw-bold mb-3">FineFoundry Documentation</h1>
-                    <p class="lead docs-tagline mb-4">
-                        Everything you need to install, use, extend, and deploy FineFoundry—from quick-start guides to deep-dive developer docs, all organized for power users and contributors.
+                    <p class="lead mb-0">
+                        Complete guides for installation, usage, training, inference, and deployment.
                     </p>
-                    <div class="d-flex flex-wrap gap-3">
-                        <a href="#getting-started" class="btn btn-primary btn-lg">
-                            <i class="bi bi-rocket-takeoff-fill me-2"></i>Start Here
-                        </a>
-                        <a href="#user-guides" class="btn btn-outline-light btn-lg">
-                            <i class="bi bi-people-fill me-2"></i>User Guides
-                        </a>
-                        <a href="#development" class="btn btn-outline-light">
-                            <i class="bi bi-code-slash me-2"></i>Developer Docs
-                        </a>
-                    </div>
                 </div>
-                <div class="col-lg-4 mt-4 mt-lg-0 text-lg-end text-center">
-                    <i class="bi bi-journal-code display-1 text-warning"></i>
+                <div class="col-lg-4 text-lg-end d-none d-lg-block">
+                    <i class="bi bi-journal-code display-1 text-warning opacity-50"></i>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Docs Layout -->
-    <section class="docs-layout">
+    <!-- Docs Content -->
+    <section class="docs-content">
         <div class="container">
             <div class="row">
                 <!-- Sidebar -->
-                <div class="col-lg-3 mb-4 mb-lg-0">
-                    <div class="docs-sidebar">
-                        <h6 class="text-muted text-uppercase mb-3">On this page</h6>
-                        <ul class="list-group list-unstyled">
-                            <li class="list-group-item"><a href="#getting-started"><i class="bi bi-rocket-takeoff-fill me-2"></i>Getting Started</a></li>
-                            <li class="list-group-item"><a href="#user-guides"><i class="bi bi-window-desktop me-2"></i>User Guides</a></li>
-                            <li class="list-group-item"><a href="#cli-api"><i class="bi bi-terminal me-2"></i>CLI &amp; API</a></li>
-                            <li class="list-group-item"><a href="#development"><i class="bi bi-code-slash me-2"></i>Development</a></li>
-                            <li class="list-group-item"><a href="#deployment"><i class="bi bi-box-seam me-2"></i>Deployment</a></li>
-                            <li class="list-group-item"><a href="#help"><i class="bi bi-question-circle me-2"></i>Help &amp; Troubleshooting</a></li>
-                        </ul>
+                <div class="col-lg-3 mb-4">
+                    <div class="docs-sidebar-wrapper">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-body p-2">
+                                <nav class="docs-sidebar nav flex-column">
+                                    <div class="nav-section">Getting Started</div>
+                                    <a class="nav-link active" href="#quick-start">
+                                        <i class="bi bi-rocket-takeoff-fill me-2"></i>Quick Start
+                                    </a>
+                                    <a class="nav-link" href="#installation">
+                                        <i class="bi bi-download me-2"></i>Installation
+                                    </a>
 
-                        <div class="mt-4">
-                            <h6 class="text-muted text-uppercase mb-2">GitHub Docs</h6>
-                            <a href="https://github.com/SourceBox-LLC/FineFoundry" target="_blank" class="d-block small mb-1">
-                                <i class="bi bi-github me-1"></i> Repository
-                            </a>
-                            <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs" target="_blank" class="d-block small mb-1">
-                                <i class="bi bi-folder2-open me-1"></i> Docs directory
-                            </a>
-                            <a href="https://github.com/SourceBox-LLC/FineFoundry/blob/master/docs/README.md" target="_blank" class="d-block small">
-                                <i class="bi bi-journal-text me-1"></i> Docs index (README)
-                            </a>
+                                    <div class="nav-section">User Guides</div>
+                                    <a class="nav-link" href="#scrape-tab">
+                                        <i class="bi bi-search me-2"></i>Scrape Tab
+                                    </a>
+                                    <a class="nav-link" href="#build-publish">
+                                        <i class="bi bi-hammer me-2"></i>Build & Publish
+                                    </a>
+                                    <a class="nav-link" href="#training-tab">
+                                        <i class="bi bi-gpu-card me-2"></i>Training Tab
+                                    </a>
+                                    <a class="nav-link" href="#inference-tab">
+                                        <i class="bi bi-chat-dots me-2"></i>Inference Tab
+                                    </a>
+                                    <a class="nav-link" href="#merge-tab">
+                                        <i class="bi bi-shuffle me-2"></i>Merge Datasets
+                                    </a>
+                                    <a class="nav-link" href="#analysis-tab">
+                                        <i class="bi bi-pie-chart me-2"></i>Dataset Analysis
+                                    </a>
+                                    <a class="nav-link" href="#settings-tab">
+                                        <i class="bi bi-gear me-2"></i>Settings
+                                    </a>
+
+                                    <div class="nav-section">CLI & API</div>
+                                    <a class="nav-link" href="#cli-usage">
+                                        <i class="bi bi-terminal me-2"></i>CLI Tools
+                                    </a>
+                                    <a class="nav-link" href="#python-api">
+                                        <i class="bi bi-code-slash me-2"></i>Python API
+                                    </a>
+
+                                    <div class="nav-section">Deployment</div>
+                                    <a class="nav-link" href="#docker-deployment">
+                                        <i class="bi bi-box-seam me-2"></i>Docker
+                                    </a>
+                                    <a class="nav-link" href="#runpod-setup">
+                                        <i class="bi bi-cloud me-2"></i>RunPod
+                                    </a>
+
+                                    <div class="nav-section">Resources</div>
+                                    <a class="nav-link" href="#troubleshooting">
+                                        <i class="bi bi-question-circle me-2"></i>Troubleshooting
+                                    </a>
+                                </nav>
+                                <hr class="my-2">
+                                <div class="p-2">
+                                    <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs" target="_blank" class="btn btn-outline-secondary btn-sm w-100">
+                                        <i class="bi bi-github me-2"></i>GitHub Docs
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Main content -->
+                <!-- Main Content -->
                 <div class="col-lg-9">
-                    <!-- Getting Started -->
-                    <div id="getting-started" class="docs-section">
-                        <h3 class="fw-bold"><i class="bi bi-rocket-takeoff-fill text-primary me-2"></i>Getting Started</h3>
-                        <p class="text-muted">New to FineFoundry? Follow this path to get productive in minutes.</p>
 
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <div class="card h-100 shadow-sm border-0">
-                                    <div class="card-body p-4">
-                                        <h5 class="mb-2">Quick Start</h5>
-                                        <p class="small text-muted mb-3">End-to-end walkthrough: install, launch the GUI, and run your first scrape &amp; training job.</p>
-                                        <ol class="small mb-3">
-                                            <li>Install Python 3.10+ and clone the repo.</li>
-                                            <li>Install <code>uv</code> (<code>pip install uv</code>) if needed.</li>
-                                            <li>Run <code>uv run src/main.py</code> (handles deps automatically).</li>
-                                            <li>Or use a venv + pip: <code>pip install -r requirements.txt</code> then <code>python src/main.py</code>.</li>
-                                        </ol>
-                                        <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs/user-guide" target="_blank" class="btn btn-sm btn-outline-primary">
-                                            Open Quick Start in GitHub
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card h-100 shadow-sm border-0">
-                                    <div class="card-body p-4">
-                                        <h5 class="mb-2">Installation &amp; Requirements</h5>
-                                        <p class="small text-muted mb-3">Detailed platform-specific instructions, prerequisites, and common setup pitfalls.</p>
-                                        <ul class="small mb-3">
-                                            <li>Python 3.10+ on Windows, macOS, or Linux.</li>
-                                            <li><code>uv</code> (recommended) or pip for package management.</li>
-                                            <li>Optional: Hugging Face account &amp; token for Hub integration.</li>
-                                            <li>Optional: RunPod account for cloud training.</li>
-                                        </ul>
-                                        <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs/user-guide" target="_blank" class="btn btn-sm btn-outline-primary">
-                                            View installation docs
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                    <!-- Quick Start -->
+                    <div id="quick-start" class="doc-section">
+                        <h2><i class="bi bi-rocket-takeoff-fill text-primary me-2"></i>Quick Start Guide</h2>
+                        <p>Get from cloned repo to a running desktop app and your first dataset in minutes.</p>
+
+                        <h3>Prerequisites</h3>
+                        <ul>
+                            <li><strong>Python 3.10+</strong> (Windows, macOS, or Linux)</li>
+                            <li><strong>Git</strong> (optional, for cloning)</li>
+                            <li><strong>uv</strong> (recommended) or pip for package management</li>
+                        </ul>
+                        <p>Optional for publishing:</p>
+                        <ul>
+                            <li><a href="https://huggingface.co/" target="_blank">Hugging Face account</a> with an <a href="https://huggingface.co/settings/tokens" target="_blank">access token</a></li>
+                        </ul>
+
+                        <h3>Option 1: Using uv (Recommended)</h3>
+                        <pre class="bg-dark text-light p-3 rounded"><code># Clone the repository
+git clone https://github.com/SourceBox-LLC/FineFoundry.git FineFoundry-Core
+cd FineFoundry-Core
+
+# Install uv if needed
+pip install uv
+
+# Run the application (uv handles dependencies automatically)
+uv run src/main.py</code></pre>
+
+                        <h3>Option 2: Using pip</h3>
+                        <pre class="bg-dark text-light p-3 rounded"><code># Clone the repository
+git clone https://github.com/SourceBox-LLC/FineFoundry.git FineFoundry-Core
+cd FineFoundry-Core
+
+# Create and activate virtual environment
+python -m venv venv
+
+# Windows (PowerShell)
+./venv/Scripts/Activate.ps1
+
+# macOS/Linux
+source venv/bin/activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the application
+python src/main.py</code></pre>
+
+                        <h3>First Launch</h3>
+                        <p>When you launch FineFoundry, you'll see a desktop application with these tabs:</p>
+                        <ol>
+                            <li><strong>Scrape</strong> – Collect training data from 4chan, Reddit, or Stack Exchange</li>
+                            <li><strong>Build / Publish</strong> – Create datasets and publish to Hugging Face</li>
+                            <li><strong>Training</strong> – Fine-tune models on RunPod or locally via Docker</li>
+                            <li><strong>Inference</strong> – Run inference against fine-tuned adapters</li>
+                            <li><strong>Merge Datasets</strong> – Combine multiple datasets</li>
+                            <li><strong>Dataset Analysis</strong> – Analyze dataset quality</li>
+                            <li><strong>Settings</strong> – Configure authentication and preferences</li>
+                        </ol>
+
+                        <h3>Your First Dataset</h3>
+                        <h4>Step 1: Scrape Data</h4>
+                        <ol>
+                            <li>Navigate to the <strong>Scrape</strong> tab</li>
+                            <li>Select a few boards (e.g., <code>pol</code>, <code>b</code>, <code>x</code>)</li>
+                            <li>Configure parameters:
+                                <ul>
+                                    <li><strong>Max Threads</strong>: 50</li>
+                                    <li><strong>Max Pairs</strong>: 500</li>
+                                    <li><strong>Delay</strong>: 0.5 seconds</li>
+                                    <li><strong>Min Length</strong>: 10 characters</li>
+                                </ul>
+                            </li>
+                            <li>Click <strong>Start Scrape</strong></li>
+                            <li>When complete, click <strong>Preview Dataset</strong></li>
+                        </ol>
+
+                        <h4>Step 2: Build & Publish (Optional)</h4>
+                        <ol>
+                            <li>Navigate to the <strong>Build / Publish</strong> tab</li>
+                            <li>Configure split ratios with sliders</li>
+                            <li>Click <strong>Build Dataset</strong></li>
+                            <li>To publish: enable <strong>Push to Hub</strong>, set <strong>Repo ID</strong>, and click <strong>Push + Upload README</strong></li>
+                        </ol>
+                    </div>
+
+                    <!-- Installation -->
+                    <div id="installation" class="doc-section">
+                        <h2><i class="bi bi-download text-primary me-2"></i>Installation</h2>
+                        <p>Detailed installation instructions for all platforms.</p>
+
+                        <h3>System Requirements</h3>
+                        <ul>
+                            <li><strong>OS:</strong> Windows 10+, macOS 11+, or Linux (Ubuntu 20.04+)</li>
+                            <li><strong>Python:</strong> 3.10 or higher</li>
+                            <li><strong>RAM:</strong> 8GB minimum, 16GB+ recommended for training</li>
+                            <li><strong>GPU:</strong> Optional but recommended for local training (NVIDIA with CUDA support)</li>
+                        </ul>
+
+                        <h3>Installing uv</h3>
+                        <p><code>uv</code> is a fast Python package manager that handles dependencies automatically:</p>
+                        <pre class="bg-dark text-light p-3 rounded"><code># Install uv
+pip install uv
+
+# Verify installation
+uv --version</code></pre>
+
+                        <h3>Verifying Installation</h3>
+                        <pre class="bg-dark text-light p-3 rounded"><code># Check Python version
+python --version  # Should be 3.10+
+
+# Run FineFoundry
+uv run src/main.py</code></pre>
+
+                        <div class="tip-box">
+                            <strong>💡 Tip:</strong> If you encounter dependency issues, try deleting the <code>.venv</code> folder and running <code>uv run src/main.py</code> again. uv will recreate the environment with fresh dependencies.
                         </div>
                     </div>
 
-                    <!-- User Guides -->
-                    <div id="user-guides" class="docs-section">
-                        <h3 class="fw-bold"><i class="bi bi-window-desktop text-primary me-2"></i>User Guides (GUI)</h3>
-                        <p class="text-muted">Deep-dive guides for each tab in the desktop app, mirroring the GitHub user-guide docs.</p>
+                    <!-- Scrape Tab -->
+                    <div id="scrape-tab" class="doc-section">
+                        <h2><i class="bi bi-search text-primary me-2"></i>Scrape Tab</h2>
+                        <p>Collect conversational training data from multiple sources and prepare it as input/output pairs.</p>
 
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <div class="card h-100 shadow-sm border-0">
-                                    <div class="card-body p-4">
-                                        <h5 class="mb-2"><i class="bi bi-search me-2 text-primary"></i>Scrape Tab</h5>
-                                        <p class="small text-muted">Configure multi-source scraping (4chan, Reddit, Stack Exchange) with contextual pairing and filters.</p>
-                                        <ul class="small mb-3">
-                                            <li>Board/source selection &amp; thread limits.</li>
-                                            <li>Pairing modes (contextual, adjacent, cumulative).</li>
-                                            <li>Rate limiting, deduplication, and cleaning.</li>
-                                            <li>Live progress and dataset preview.</li>
-                                        </ul>
-                                        <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs/user-guide" target="_blank" class="btn btn-sm btn-outline-primary">Scrape tab guide</a>
-                                    </div>
-                                </div>
+                        <h3>Supported Sources</h3>
+                        <div class="feature-grid">
+                            <div class="feature-box">
+                                <strong>4chan</strong>
+                                <p class="small text-muted mb-0">Multi-board scraping with quote-chain and cumulative pairing modes</p>
                             </div>
-                            <div class="col-md-6">
-                                <div class="card h-100 shadow-sm border-0">
-                                    <div class="card-body p-4">
-                                        <h5 class="mb-2"><i class="bi bi-hammer me-2 text-primary"></i>Build &amp; Publish Tab</h5>
-                                        <p class="small text-muted">Build train/val/test splits and publish datasets directly to Hugging Face Hub.</p>
-                                        <ul class="small mb-3">
-                                            <li>Split configuration &amp; shuffling.</li>
-                                            <li>Dataset cards &amp; metadata.</li>
-                                            <li>Push to Hub workflow.</li>
-                                            <li>Artifact layout and versioning.</li>
-                                        </ul>
-                                        <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs/user-guide" target="_blank" class="btn btn-sm btn-outline-primary">Build &amp; publish guide</a>
-                                    </div>
-                                </div>
+                            <div class="feature-box">
+                                <strong>Reddit</strong>
+                                <p class="small text-muted mb-0">Subreddits or single posts with parent-child threading</p>
                             </div>
-                            <div class="col-md-6">
-                                <div class="card h-100 shadow-sm border-0">
-                                    <div class="card-body p-4">
-                                        <h5 class="mb-2"><i class="bi bi-gpu-card me-2 text-primary"></i>Training Tab</h5>
-                                        <p class="small text-muted">Configure and run LoRA-style fine-tuning on RunPod or locally using an Unsloth-based trainer image, with configuration presets.</p>
-                                        <ul class="small mb-3">
-                                            <li>Base model &amp; dataset selection.</li>
-                                            <li>Hyperparameters &amp; LoRA settings.</li>
-                                            <li>Run configurations saved for quick reruns.</li>
-                                            <li>Shared Unsloth/PyTorch-based local inference helpers after successful runs.</li>
-                                        </ul>
-                                        <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs/user-guide" target="_blank" class="btn btn-sm btn-outline-primary">Training tab guide</a>
-                                    </div>
-                                </div>
+                            <div class="feature-box">
+                                <strong>Stack Exchange</strong>
+                                <p class="small text-muted mb-0">Q&A pairs from accepted answers</p>
                             </div>
-                            <div class="col-md-6">
-                                <div class="card h-100 shadow-sm border-0">
-                                    <div class="card-body p-4">
-                                        <h5 class="mb-2"><i class="bi bi-shuffle me-2 text-primary"></i>Merge &amp; Analysis Tabs</h5>
-                                        <p class="small text-muted">Combine multiple datasets and run quality checks before training.</p>
-                                        <ul class="small mb-3">
-                                            <li>Merge JSON and Hub datasets with automatic column mapping.</li>
-                                            <li>Filters, normalization, and download of merged results.</li>
-                                            <li>Sentiment, toxicity, duplicates, and leakage analysis.</li>
-                                            <li>Class balance and distribution visualizations.</li>
-                                        </ul>
-                                        <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs/user-guide" target="_blank" class="btn btn-sm btn-outline-primary">Merge &amp; analysis guides</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card h-100 shadow-sm border-0">
-                                    <div class="card-body p-4">
-                                        <h5 class="mb-2"><i class="bi bi-chat-dots me-2 text-primary"></i>Inference Tab</h5>
-                                        <p class="small text-muted">Run local inference against fine-tuned adapters with prompt history and Full Chat View.</p>
-                                        <ul class="small mb-3">
-                                            <li>Select any adapter directory and validate immediately.</li>
-                                            <li>Prompt &amp; responses view or Full Chat View dialog.</li>
-                                            <li>Powered by Transformers + PEFT + bitsandbytes (local, no external APIs).</li>
-                                            <li>Compatible with Unsloth-trained adapters from Training tab.</li>
-                                        </ul>
-                                        <a href="https://github.com/SourceBox-LLC/FineFoundry/blob/master/docs/user-guide/inference-tab.md" target="_blank" class="btn btn-sm btn-outline-primary">Inference tab guide</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card h-100 shadow-sm border-0">
-                                    <div class="card-body p-4">
-                                        <h5 class="mb-2"><i class="bi bi-gear me-2 text-primary"></i>Settings &amp; Authentication</h5>
-                                        <p class="small text-muted">Centralized configuration for tokens, proxies, and backend integrations.</p>
-                                        <ul class="small mb-3">
-                                            <li>Hugging Face tokens and Hub settings.</li>
-                                            <li>RunPod API key and defaults.</li>
-                                            <li>Proxy settings per scraper (including Tor).</li>
-                                            <li>Ollama and other helper integrations.</li>
-                                        </ul>
-                                        <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs/user-guide" target="_blank" class="btn btn-sm btn-outline-primary">Settings &amp; auth docs</a>
-                                    </div>
-                                </div>
-                            </div>
+                        </div>
+
+                        <h3>Parameters</h3>
+                        <ul>
+                            <li><strong>Max Threads</strong> – Number of threads per board to sample</li>
+                            <li><strong>Max Pairs</strong> – Upper bound on input/output pairs to extract</li>
+                            <li><strong>Delay (s)</strong> – Polite delay between HTTP requests</li>
+                            <li><strong>Min Length</strong> – Minimum character count per side</li>
+                            <li><strong>Mode</strong> – <code>normal</code> (adjacent posts) or <code>contextual</code></li>
+                            <li><strong>Strategy</strong> (contextual only) – <code>quote_chain</code>, <code>cumulative</code>, or <code>last_k</code></li>
+                            <li><strong>K</strong> – Context depth for contextual mode</li>
+                            <li><strong>Max Input Chars</strong> – Optional truncation of long contexts</li>
+                        </ul>
+
+                        <h3>Pairing Modes</h3>
+                        <h4>Normal Mode</h4>
+                        <p>Creates pairs from adjacent posts. Simple and fast, but loses conversational context.</p>
+
+                        <h4>Contextual Mode</h4>
+                        <p>Builds context from the conversation thread:</p>
+                        <ul>
+                            <li><strong>quote_chain</strong> – Follows reply chains via quote references</li>
+                            <li><strong>cumulative</strong> – Accumulates all previous posts as context</li>
+                            <li><strong>last_k</strong> – Uses the last K posts as context</li>
+                        </ul>
+
+                        <h3>Output Format</h3>
+                        <pre class="bg-dark text-light p-3 rounded"><code>[
+  {"input": "What do you think about...", "output": "I believe that..."},
+  {"input": "Can you explain...", "output": "Sure, here's how..."}
+]</code></pre>
+
+                        <div class="tip-box">
+                            <strong>💡 Best Practice:</strong> Start with smaller runs (50 threads, 500 pairs) to validate your configuration before scaling up.
                         </div>
                     </div>
 
-                    <!-- CLI & API -->
-                    <div id="cli-api" class="docs-section">
-                        <h3 class="fw-bold"><i class="bi bi-terminal text-primary me-2"></i>CLI &amp; API</h3>
-                        <p class="text-muted">Automate FineFoundry workflows or integrate them into your own pipelines.</p>
+                    <!-- Build & Publish -->
+                    <div id="build-publish" class="doc-section">
+                        <h2><i class="bi bi-hammer text-primary me-2"></i>Build & Publish Tab</h2>
+                        <p>Convert raw JSON data into structured Hugging Face datasets and optionally push to the Hub.</p>
 
+                        <h3>Workflow</h3>
+                        <ol>
+                            <li>Select a <strong>Data file (JSON)</strong> from scraping</li>
+                            <li>Configure <strong>split ratios</strong> (train/validation/test)</li>
+                            <li>Set <strong>shuffle</strong> and <strong>seed</strong> for reproducibility</li>
+                            <li>Click <strong>Build Dataset</strong></li>
+                            <li>Optionally enable <strong>Push to Hub</strong> and publish</li>
+                        </ol>
+
+                        <h3>Split Configuration</h3>
+                        <ul>
+                            <li><strong>Seed</strong> – Controls shuffling deterministically</li>
+                            <li><strong>Shuffle</strong> – Whether to shuffle before splitting</li>
+                            <li><strong>Validation %</strong> – Fraction for validation set</li>
+                            <li><strong>Test %</strong> – Fraction for test set (remainder becomes train)</li>
+                            <li><strong>Min Length</strong> – Minimum characters for input/output</li>
+                        </ul>
+
+                        <h3>Hub Integration</h3>
+                        <ul>
+                            <li><strong>Repo ID</strong> – e.g., <code>username/my-dataset</code></li>
+                            <li><strong>Private</strong> – Create a private repository</li>
+                            <li><strong>HF Token</strong> – Your Hugging Face access token</li>
+                        </ul>
+                        <p>The <strong>Push + Upload README</strong> button uploads your dataset with an auto-generated dataset card.</p>
+
+                        <h3>Example: Local Splits Only</h3>
+                        <ol>
+                            <li>Set Data file to <code>scraped_training_data.json</code></li>
+                            <li>Set Validation to <code>0.05</code>, Test to <code>0.0</code></li>
+                            <li>Enable Shuffle, set Seed to <code>42</code></li>
+                            <li>Set Save dir to <code>hf_dataset</code></li>
+                            <li>Click <strong>Build Dataset</strong></li>
+                        </ol>
+                    </div>
+
+                    <!-- Training Tab -->
+                    <div id="training-tab" class="doc-section">
+                        <h2><i class="bi bi-gpu-card text-primary me-2"></i>Training Tab</h2>
+                        <p>Fine-tune language models using an Unsloth-based LoRA training stack on RunPod or locally via Docker.</p>
+
+                        <h3>Training Targets</h3>
+                        <div class="feature-grid">
+                            <div class="feature-box">
+                                <strong><i class="bi bi-cloud me-2"></i>RunPod</strong>
+                                <p class="small text-muted mb-0">Cloud GPU training with automated pod and network volume management</p>
+                            </div>
+                            <div class="feature-box">
+                                <strong><i class="bi bi-box-seam me-2"></i>Local Docker</strong>
+                                <p class="small text-muted mb-0">Train on your local GPU using the same Unsloth trainer image</p>
+                            </div>
+                        </div>
+
+                        <h3>Under the Hood</h3>
+                        <p>Both targets use <code>docker.io/sbussiso/unsloth-trainer:latest</code> with:</p>
+                        <ul>
+                            <li><strong>PyTorch</strong> – Accelerated training on CPU/GPU</li>
+                            <li><strong>Hugging Face Transformers</strong> – Model loading and tokenization</li>
+                            <li><strong>bitsandbytes</strong> – 4-bit quantization for memory efficiency</li>
+                            <li><strong>PEFT / LoRA</strong> – Parameter-efficient fine-tuning via Unsloth</li>
+                        </ul>
+
+                        <h3>Skill Levels</h3>
+                        <h4>Beginner Mode</h4>
+                        <p>Simplifies choices with safe presets:</p>
+                        <ul>
+                            <li><strong>Fastest (RunPod)</strong> – Higher throughput on stronger GPUs</li>
+                            <li><strong>Cheapest (RunPod)</strong> – Conservative params for smaller GPUs</li>
+                            <li><strong>Quick local test</strong> – Short run for sanity checks</li>
+                            <li><strong>Auto Set (local)</strong> – Detects GPU VRAM and sets optimal params</li>
+                        </ul>
+
+                        <h4>Expert Mode</h4>
+                        <p>Full control over all hyperparameters for experienced users.</p>
+
+                        <h3>Hyperparameters</h3>
+                        <ul>
+                            <li><strong>Base model</strong> – Default: <code>unsloth/Meta-Llama-3.1-8B-Instruct-bnb-4bit</code></li>
+                            <li><strong>Epochs</strong> – Number of training epochs</li>
+                            <li><strong>Learning rate</strong> – Step size for optimization</li>
+                            <li><strong>Batch size</strong> – Samples per device per step</li>
+                            <li><strong>Gradient accumulation</strong> – Steps before weight update</li>
+                            <li><strong>Max steps</strong> – Upper bound on training steps</li>
+                            <li><strong>Packing</strong> – Pack multiple short examples for throughput</li>
+                            <li><strong>Auto-resume</strong> – Continue from latest checkpoint</li>
+                        </ul>
+
+                        <h3>Quick Local Inference</h3>
+                        <p>After a successful local run, the Quick Local Inference panel appears:</p>
+                        <ul>
+                            <li>Enter a prompt and click <strong>Run Inference</strong></li>
+                            <li>Choose presets: Deterministic, Balanced, or Creative</li>
+                            <li>Adjust temperature and max tokens with sliders</li>
+                            <li>View prompt/response history</li>
+                        </ul>
+
+                        <h3>Saving Configurations</h3>
+                        <p>Training configs are saved as JSON files under <code>src/saved_configs/</code>:</p>
+                        <ul>
+                            <li>Click <strong>Save current setup</strong> to snapshot your configuration</li>
+                            <li>Use the dropdown to load saved configs</li>
+                            <li>The last used config auto-loads on startup</li>
+                        </ul>
+                    </div>
+
+                    <!-- Inference Tab -->
+                    <div id="inference-tab" class="doc-section">
+                        <h2><i class="bi bi-chat-dots text-primary me-2"></i>Inference Tab</h2>
+                        <p>Run local inference against fine-tuned adapters with prompt history and Full Chat View.</p>
+
+                        <h3>Features</h3>
+                        <ul>
+                            <li><strong>Adapter Selection</strong> – Point to any LoRA adapter directory on disk</li>
+                            <li><strong>Instant Validation</strong> – Verifies adapter files before loading</li>
+                            <li><strong>Generation Presets</strong> – Deterministic, Balanced, Creative, or Custom</li>
+                            <li><strong>Full Chat View</strong> – Multi-turn conversation dialog</li>
+                            <li><strong>Prompt History</strong> – Scroll through previous prompts and responses</li>
+                        </ul>
+
+                        <h3>Adapter Validation</h3>
+                        <p>When you select an adapter directory, FineFoundry:</p>
+                        <ol>
+                            <li>Shows a loading spinner while checking the folder</li>
+                            <li>Verifies the directory contains LoRA artifacts (<code>adapter_config.json</code>, weight files)</li>
+                            <li>If valid: unlocks the Prompt & Responses section</li>
+                            <li>If invalid: shows an error and locks the controls</li>
+                        </ol>
+
+                        <h3>Generation Controls</h3>
+                        <ul>
+                            <li><strong>Preset dropdown</strong> – Quick settings for different use cases</li>
+                            <li><strong>Temperature slider</strong> – Controls randomness (0.0 = deterministic)</li>
+                            <li><strong>Max new tokens slider</strong> – Upper bound on generated tokens</li>
+                        </ul>
+
+                        <h3>Full Chat View</h3>
+                        <p>Click <strong>Full Chat View</strong> to open a focused chat dialog:</p>
+                        <ul>
+                            <li>Large chat area with user/assistant bubbles</li>
+                            <li>Multiline message composer</li>
+                            <li>Shared conversation history with main view</li>
+                            <li>Clear history and close buttons</li>
+                        </ul>
+
+                        <h3>Under the Hood</h3>
+                        <p>Powered by the same stack as training:</p>
+                        <ul>
+                            <li><strong>Transformers</strong> – <code>AutoModelForCausalLM</code>, <code>AutoTokenizer</code></li>
+                            <li><strong>PEFT</strong> – <code>PeftModel</code> for adapter loading</li>
+                            <li><strong>bitsandbytes</strong> – 4-bit quantization on CUDA</li>
+                            <li><strong>100% local</strong> – No external API calls</li>
+                        </ul>
+                    </div>
+
+                    <!-- Merge Tab -->
+                    <div id="merge-tab" class="doc-section">
+                        <h2><i class="bi bi-shuffle text-primary me-2"></i>Merge Datasets Tab</h2>
+                        <p>Combine multiple datasets from different sources into a unified training set.</p>
+
+                        <h3>Use Cases</h3>
+                        <ul>
+                            <li>Combining data from multiple scraping sessions</li>
+                            <li>Merging Hugging Face datasets with local JSON files</li>
+                            <li>Creating larger, more diverse training datasets</li>
+                        </ul>
+
+                        <h3>Operations</h3>
+                        <ul>
+                            <li><strong>Concatenate</strong> – Stack all datasets sequentially</li>
+                            <li><strong>Interleave</strong> – Alternate records for better distribution</li>
+                        </ul>
+
+                        <h3>Supported Sources</h3>
+                        <ul>
+                            <li><strong>Hugging Face</strong> – Load from Hub with repo, split, and config</li>
+                            <li><strong>JSON file</strong> – Load from local JSON files</li>
+                        </ul>
+
+                        <h3>Column Mapping</h3>
+                        <p>FineFoundry automatically handles column mapping:</p>
+                        <ul>
+                            <li>Auto-detects common patterns: <code>input/output</code>, <code>prompt/response</code>, <code>question/answer</code></li>
+                            <li>Normalizes all datasets to <code>input/output</code> format</li>
+                            <li>Filters rows with empty input or output</li>
+                        </ul>
+
+                        <h3>Output Formats</h3>
+                        <ul>
+                            <li><strong>JSON file</strong> – Simple, portable format for smaller datasets</li>
+                            <li><strong>HF dataset dir</strong> – Memory-efficient for large datasets (100k+ records)</li>
+                        </ul>
+
+                        <h3>Download Merged Dataset</h3>
+                        <p>After a successful merge, click <strong>Download Merged Dataset</strong> to copy the result to another location.</p>
+                    </div>
+
+                    <!-- Analysis Tab -->
+                    <div id="analysis-tab" class="doc-section">
+                        <h2><i class="bi bi-pie-chart text-primary me-2"></i>Dataset Analysis Tab</h2>
+                        <p>Interactive insights into your datasets to assess quality before training.</p>
+
+                        <h3>Analysis Modules</h3>
                         <div class="row g-3">
                             <div class="col-md-6">
-                                <div class="card h-100 shadow-sm border-0">
-                                    <div class="card-body p-4">
-                                        <h5 class="mb-2">CLI Tools</h5>
-                                        <p class="small text-muted">Command-line entrypoints for scraping, dataset building, and more.</p>
-                                        <ul class="small mb-3">
-                                            <li>Reddit scraper CLI with URL, max-posts, and mode options.</li>
-                                            <li>Dataset builder CLI for batch dataset creation.</li>
-                                            <li>Standardized logging and progress output.</li>
-                                        </ul>
-                                        <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs/user-guide" target="_blank" class="btn btn-sm btn-outline-primary">CLI usage docs</a>
-                                    </div>
-                                </div>
+                                <ul>
+                                    <li><strong>Basic Stats</strong> – Record counts, mean lengths</li>
+                                    <li><strong>Duplicates & Similarity</strong> – Approximate duplicate rate</li>
+                                    <li><strong>Sentiment</strong> – Polarity distribution</li>
+                                    <li><strong>Class Balance</strong> – Short/medium/long buckets</li>
+                                </ul>
                             </div>
                             <div class="col-md-6">
-                                <div class="card h-100 shadow-sm border-0">
-                                    <div class="card-body p-4">
-                                        <h5 class="mb-2">Python APIs</h5>
-                                        <p class="small text-muted">Use FineFoundry programmatically: scrapers, dataset builder, and training interfaces.</p>
-                                        <ul class="small mb-3">
-                                            <li>Scrapers API (4chan, Reddit, Stack Exchange).</li>
-                                            <li>Dataset builder for programmatic merges and splits.</li>
-                                            <li>Training API for scripted fine-tuning runs.</li>
-                                        </ul>
-                                        <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs/api" target="_blank" class="btn btn-sm btn-outline-primary">API reference on GitHub</a>
-                                    </div>
-                                </div>
+                                <ul>
+                                    <li><strong>Data Leakage</strong> – Train/test overlap detection</li>
+                                    <li><strong>Toxicity</strong> – Harmful content detection</li>
+                                    <li><strong>Readability</strong> – Text complexity metrics</li>
+                                    <li><strong>Topics</strong> – Topic distribution analysis</li>
+                                </ul>
                             </div>
+                        </div>
+
+                        <h3>Workflow</h3>
+                        <ol>
+                            <li>Select dataset source (JSON or Hugging Face)</li>
+                            <li>Enable the analysis modules you need</li>
+                            <li>Click <strong>Analyze Dataset</strong></li>
+                            <li>Review summary stats and visualizations</li>
+                        </ol>
+
+                        <div class="tip-box">
+                            <strong>💡 Best Practice:</strong> Run analysis before committing to long training runs. Use Duplicates & Similarity to spot unintentional dataset duplication.
                         </div>
                     </div>
 
-                    <!-- Development -->
-                    <div id="development" class="docs-section">
-                        <h3 class="fw-bold"><i class="bi bi-code-slash text-primary me-2"></i>Development</h3>
-                        <p class="text-muted">For contributors and advanced users extending FineFoundry.</p>
+                    <!-- Settings Tab -->
+                    <div id="settings-tab" class="doc-section">
+                        <h2><i class="bi bi-gear text-primary me-2"></i>Settings Tab</h2>
+                        <p>Centralized configuration for authentication, proxies, and integrations.</p>
 
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <div class="card h-100 shadow-sm border-0">
-                                    <div class="card-body p-4">
-                                        <h5 class="mb-2">Project Structure &amp; Code Style</h5>
-                                        <p class="small text-muted">Understand how the codebase is organized and how to keep contributions consistent.</p>
-                                        <ul class="small mb-3">
-                                            <li>High-level layout of <code>src/</code>, scrapers, UI, and utilities.</li>
-                                            <li>Code style and formatting guidelines.</li>
-                                            <li>Recommended development environment.</li>
-                                        </ul>
-                                        <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs/development" target="_blank" class="btn btn-sm btn-outline-primary">Development docs</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card h-100 shadow-sm border-0">
-                                    <div class="card-body p-4">
-                                        <h5 class="mb-2">Logging, Testing &amp; Contributing</h5>
-                                        <p class="small text-muted">Instrumentation, test strategy, and contribution workflow.</p>
-                                        <ul class="small mb-3">
-                                            <li>Central logging configuration and log levels.</li>
-                                            <li>Running and writing tests.</li>
-                                            <li>Opening issues and pull requests.</li>
-                                        </ul>
-                                        <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs/development" target="_blank" class="btn btn-sm btn-outline-primary">Contributing guide</a>
-                                    </div>
-                                </div>
-                            </div>
+                        <h3>Hugging Face Settings</h3>
+                        <ul>
+                            <li><strong>HF Token</strong> – Paste your access token with read/write permissions</li>
+                            <li><strong>Test</strong> – Verify connectivity to Hugging Face</li>
+                            <li><strong>Save / Remove</strong> – Persist or clear the token</li>
+                        </ul>
+
+                        <h3>RunPod Settings</h3>
+                        <ul>
+                            <li><strong>API Key</strong> – Your RunPod API key</li>
+                            <li><strong>Test</strong> – Verify the key works</li>
+                            <li><strong>Save / Remove</strong> – Persist or clear the key</li>
+                        </ul>
+
+                        <h3>Proxy Settings</h3>
+                        <ul>
+                            <li><strong>Enable proxy</strong> – Toggle proxy usage for scrapers</li>
+                            <li><strong>Use env proxies</strong> – Use system environment variables</li>
+                            <li><strong>Proxy URL</strong> – e.g., <code>socks5h://127.0.0.1:9050</code> for Tor</li>
+                        </ul>
+
+                        <h3>Ollama Settings (Optional)</h3>
+                        <ul>
+                            <li><strong>Enable Ollama</strong> – Toggle Ollama integration</li>
+                            <li><strong>Base URL</strong> – e.g., <code>http://localhost:11434</code></li>
+                            <li><strong>Default model</strong> – Model to use for dataset card generation</li>
+                        </ul>
+
+                        <div class="alert alert-info">
+                            <i class="bi bi-info-circle-fill me-2"></i>
+                            Settings are persisted locally and never sent to external servers.
                         </div>
                     </div>
 
-                    <!-- Deployment -->
-                    <div id="deployment" class="docs-section">
-                        <h3 class="fw-bold"><i class="bi bi-box-seam text-primary me-2"></i>Deployment</h3>
-                        <p class="text-muted">Run FineFoundry in containers or cloud environments.</p>
+                    <!-- CLI Usage -->
+                    <div id="cli-usage" class="doc-section">
+                        <h2><i class="bi bi-terminal text-primary me-2"></i>CLI Tools</h2>
+                        <p>Command-line tools for automation and scripting.</p>
 
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <div class="card h-100 shadow-sm border-0">
-                                    <div class="card-body p-4">
-                                        <h5 class="mb-2">Docker &amp; Local Training</h5>
-                                        <p class="small text-muted">Run local training jobs using the Unsloth-based trainer image.</p>
-                                        <ul class="small mb-3">
-                                            <li>Default image: <code>docker.io/sbussiso/unsloth-trainer:latest</code>.</li>
-                                            <li>Volume mounts for datasets and adapter outputs.</li>
-                                            <li>Same LoRA stack as RunPod (PyTorch, Transformers, PEFT, bitsandbytes).</li>
-                                        </ul>
-                                        <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs/deployment" target="_blank" class="btn btn-sm btn-outline-primary">Docker deployment docs</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card h-100 shadow-sm border-0">
-                                    <div class="card-body p-4">
-                                        <h5 class="mb-2">RunPod &amp; Cloud Training</h5>
-                                        <p class="small text-muted">Run training jobs on RunPod pods with the Unsloth trainer image.</p>
-                                        <ul class="small mb-3">
-                                            <li>Automated network volume and pod template setup.</li>
-                                            <li>Same Unsloth-based LoRA stack as local Docker.</li>
-                                            <li>Outputs written to <code>/data/outputs/...</code> on network volume.</li>
-                                        </ul>
-                                        <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs/deployment" target="_blank" class="btn btn-sm btn-outline-primary">RunPod &amp; proxy docs</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <h3>Dataset Build & Push</h3>
+                        <p>Use <code>src/save_dataset.py</code> to build and push datasets:</p>
+                        <pre class="bg-dark text-light p-3 rounded"><code># Configure constants in the file header, then run:
+uv run src/save_dataset.py</code></pre>
+
+                        <p>Configuration options in the file:</p>
+                        <pre class="bg-dark text-light p-3 rounded"><code>DATA_FILE = "scraped_training_data.json"
+SAVE_DIR = "hf_dataset"
+SEED = 42
+SHUFFLE = True
+VAL_SIZE = 0.01
+TEST_SIZE = 0.0
+MIN_LEN = 1
+PUSH_TO_HUB = True
+REPO_ID = "username/my-dataset"
+PRIVATE = True
+HF_TOKEN = None  # uses env HF_TOKEN if None</code></pre>
+
+                        <h3>Reddit Scraper CLI</h3>
+                        <pre class="bg-dark text-light p-3 rounded"><code>uv run src/scrapers/reddit_scraper.py \
+  --url https://www.reddit.com/r/AskReddit/ \
+  --max-posts 50 \
+  --mode contextual \
+  --k 4 \
+  --max-input-chars 2000 \
+  --pairs-path reddit_pairs.json \
+  --cleanup</code></pre>
+
+                        <h4>Important Options</h4>
+                        <ul>
+                            <li><code>--url</code> – Subreddit or post URL to crawl</li>
+                            <li><code>--max-posts</code> – Maximum posts to process</li>
+                            <li><code>--mode</code> – <code>parent_child</code> or <code>contextual</code></li>
+                            <li><code>--k</code> – Context depth for contextual mode</li>
+                            <li><code>--pairs-path</code> – Output path for pairs JSON</li>
+                            <li><code>--cleanup</code> – Delete dump folder after copying pairs</li>
+                        </ul>
+
+                        <h3>When to Use CLI vs GUI</h3>
+                        <p><strong>Use GUI</strong> for interactive exploration, visual feedback, and managing training runs.</p>
+                        <p><strong>Use CLI</strong> for scheduled jobs, CI integration, and reproducible configurations.</p>
                     </div>
 
-                    <!-- Help & Troubleshooting -->
-                    <div id="help" class="docs-section mb-5">
-                        <h3 class="fw-bold"><i class="bi bi-question-circle text-primary me-2"></i>Help &amp; Troubleshooting</h3>
-                        <p class="text-muted">Resolve common issues and learn about ethical use.</p>
+                    <!-- Python API -->
+                    <div id="python-api" class="doc-section">
+                        <h2><i class="bi bi-code-slash text-primary me-2"></i>Python API</h2>
+                        <p>Use FineFoundry programmatically in your own scripts.</p>
 
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <div class="card h-100 shadow-sm border-0">
-                                    <div class="card-body p-4">
-                                        <h5 class="mb-2">FAQ &amp; Common Issues</h5>
-                                        <p class="small text-muted">Quick answers to the most frequent questions.</p>
-                                        <ul class="small mb-3">
-                                            <li>Installation and environment problems.</li>
-                                            <li>Scraper connection and rate-limit errors.</li>
-                                            <li>Training failures and debugging tips.</li>
-                                        </ul>
-                                        <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs/user-guide" target="_blank" class="btn btn-sm btn-outline-primary">FAQ &amp; troubleshooting</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="card h-100 shadow-sm border-0">
-                                    <div class="card-body p-4">
-                                        <h5 class="mb-2">Ethical &amp; Legal Notes</h5>
-                                        <p class="small text-muted">Guidance on scraping, dataset usage, and model deployment.</p>
-                                        <ul class="small mb-3">
-                                            <li>Respecting terms of service and robots policies.</li>
-                                            <li>Handling sensitive and toxic content.</li>
-                                            <li>Attribution and licensing considerations.</li>
-                                        </ul>
-                                        <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs/user-guide" target="_blank" class="btn btn-sm btn-outline-primary">Ethical &amp; legal docs</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <h3>4chan Scraper</h3>
+                        <pre class="bg-dark text-light p-3 rounded"><code>from src.scrapers.fourchan_scraper import scrape
 
-                        <div class="alert alert-info mt-4">
-                            <div class="d-flex flex-wrap align-items-center justify-content-between">
-                                <div class="me-3">
-                                    <strong>Need more?</strong>
-                                    <span class="ms-2">Open GitHub Issues or Discussions to get help or propose improvements.</span>
-                                </div>
-                                <div class="mt-3 mt-md-0">
-                                    <a href="https://github.com/SourceBox-LLC/FineFoundry/issues" target="_blank" class="btn btn-sm btn-outline-primary me-2"><i class="bi bi-bug-fill me-1"></i>Issues</a>
-                                    <a href="https://github.com/SourceBox-LLC/FineFoundry/discussions" target="_blank" class="btn btn-sm btn-outline-primary"><i class="bi bi-people-fill me-1"></i>Discussions</a>
-                                </div>
-                            </div>
-                        </div>
+pairs = scrape(
+    board="pol",
+    max_threads=150,
+    max_pairs=5000,
+    mode="contextual",
+    strategy="cumulative"
+)
+
+# pairs is a list of {"input": ..., "output": ...} dicts</code></pre>
+
+                        <h3>Dataset Builder</h3>
+                        <pre class="bg-dark text-light p-3 rounded"><code>from src.helpers.dataset_builder import build_dataset
+
+dataset = build_dataset(
+    data_file="scraped_training_data.json",
+    val_size=0.05,
+    test_size=0.05,
+    shuffle=True,
+    seed=42
+)
+
+# dataset is a datasets.DatasetDict with train/val/test splits</code></pre>
+
+                        <h3>Local Inference</h3>
+                        <pre class="bg-dark text-light p-3 rounded"><code>from src.helpers.local_inference import generate_response
+
+response = generate_response(
+    prompt="What is machine learning?",
+    adapter_path="/path/to/adapter",
+    base_model="unsloth/Meta-Llama-3.1-8B-Instruct-bnb-4bit",
+    temperature=0.7,
+    max_new_tokens=256
+)</code></pre>
                     </div>
+
+                    <!-- Docker Deployment -->
+                    <div id="docker-deployment" class="doc-section">
+                        <h2><i class="bi bi-box-seam text-primary me-2"></i>Docker Deployment</h2>
+                        <p>Run local training jobs using Docker containers.</p>
+
+                        <h3>Overview</h3>
+                        <p>FineFoundry uses Docker for <strong>local training</strong> from the Training tab:</p>
+                        <ul>
+                            <li>Training jobs run inside a Docker container</li>
+                            <li>A host directory is mounted to <code>/data</code> in the container</li>
+                            <li>Checkpoints and outputs are written to that directory</li>
+                        </ul>
+
+                        <h3>Default Trainer Image</h3>
+                        <pre class="bg-dark text-light p-3 rounded"><code>docker.io/sbussiso/unsloth-trainer:latest</code></pre>
+                        <p>This image includes:</p>
+                        <ul>
+                            <li>PyTorch with CUDA support</li>
+                            <li>Hugging Face Transformers</li>
+                            <li>bitsandbytes for 4-bit quantization</li>
+                            <li>PEFT / LoRA via Unsloth</li>
+                        </ul>
+
+                        <h3>GPU Access</h3>
+                        <p>For GPU training, ensure:</p>
+                        <ul>
+                            <li>NVIDIA drivers are installed</li>
+                            <li>Docker is configured with NVIDIA runtime</li>
+                            <li><strong>Use GPU</strong> is enabled in the Training tab</li>
+                        </ul>
+
+                        <h3>Running the GUI</h3>
+                        <p>The GUI is designed to run on your local machine, not in a container:</p>
+                        <pre class="bg-dark text-light p-3 rounded"><code># Run the GUI locally
+uv run src/main.py
+
+# Training jobs are offloaded to Docker containers</code></pre>
+                    </div>
+
+                    <!-- RunPod Setup -->
+                    <div id="runpod-setup" class="doc-section">
+                        <h2><i class="bi bi-cloud text-primary me-2"></i>RunPod Setup</h2>
+                        <p>Run training jobs on remote GPUs using RunPod.</p>
+
+                        <h3>How It Works</h3>
+                        <p>When you select <strong>RunPod – Pod</strong> as the training target:</p>
+                        <ol>
+                            <li>FineFoundry connects using your RunPod API key</li>
+                            <li>Ensures a Network Volume exists (mounted at <code>/data</code>)</li>
+                            <li>Ensures a Pod Template exists for your hardware</li>
+                            <li>Launches pods to run training jobs</li>
+                            <li>Writes outputs to <code>/data/outputs/...</code> on the network volume</li>
+                        </ol>
+
+                        <h3>Prerequisites</h3>
+                        <ul>
+                            <li>RunPod account with billing/credits</li>
+                            <li>RunPod API key (configure in Settings tab)</li>
+                            <li>Available GPU type in your desired region</li>
+                        </ul>
+
+                        <h3>Step 1: Configure API Key</h3>
+                        <ol>
+                            <li>Open the <strong>Settings</strong> tab</li>
+                            <li>Paste your API key in <strong>RunPod Settings</strong></li>
+                            <li>Click <strong>Test</strong> to verify, then <strong>Save</strong></li>
+                        </ol>
+
+                        <h3>Step 2: Create Network Volume</h3>
+                        <p>In the RunPod console:</p>
+                        <ol>
+                            <li>Create a Network Volume (size depends on your needs)</li>
+                            <li>Note the volume identifier</li>
+                            <li>In FineFoundry, use <strong>Ensure Infrastructure</strong> to verify</li>
+                        </ol>
+
+                        <h3>Step 3: Create Pod Template</h3>
+                        <p>Create a template that:</p>
+                        <ul>
+                            <li>Uses <code>docker.io/sbussiso/unsloth-trainer:latest</code></li>
+                            <li>Mounts the Network Volume at <code>/data</code></li>
+                            <li>Has your desired GPU/CPU/RAM resources</li>
+                        </ul>
+
+                        <h3>Step 4: Launch Training</h3>
+                        <ol>
+                            <li>Set Training target to <strong>RunPod – Pod</strong></li>
+                            <li>Configure dataset and hyperparameters</li>
+                            <li>Set Output dir under <code>/data/outputs/...</code></li>
+                            <li>Start the training job</li>
+                        </ol>
+                    </div>
+
+                    <!-- Troubleshooting -->
+                    <div id="troubleshooting" class="doc-section">
+                        <h2><i class="bi bi-question-circle text-primary me-2"></i>Troubleshooting</h2>
+                        <p>Common issues and solutions.</p>
+
+                        <h3>Installation Issues</h3>
+                        <h4>Python version mismatch</h4>
+                        <p>FineFoundry requires Python 3.10+. Check your version:</p>
+                        <pre class="bg-dark text-light p-3 rounded"><code>python --version</code></pre>
+
+                        <h4>Dependency conflicts</h4>
+                        <p>Delete the virtual environment and let uv recreate it:</p>
+                        <pre class="bg-dark text-light p-3 rounded"><code>rm -rf .venv
+uv run src/main.py</code></pre>
+
+                        <h3>Training Issues</h3>
+                        <h4>CUDA Out of Memory (OOM)</h4>
+                        <ul>
+                            <li>Reduce <strong>batch size</strong></li>
+                            <li>Increase <strong>gradient accumulation</strong></li>
+                            <li>Use a smaller base model</li>
+                            <li>Enable <strong>packing</strong> for short examples</li>
+                        </ul>
+
+                        <h4>Exit code 137</h4>
+                        <p>The container was killed due to memory limits. Reduce batch size or use a machine with more RAM.</p>
+
+                        <h3>Authentication Issues</h3>
+                        <h4>Hugging Face token not working</h4>
+                        <ul>
+                            <li>Verify the token has <strong>write</strong> permissions</li>
+                            <li>Use the <strong>Test</strong> button in Settings</li>
+                            <li>Try setting <code>HF_TOKEN</code> environment variable</li>
+                        </ul>
+
+                        <h4>RunPod API key issues</h4>
+                        <ul>
+                            <li>Verify the key in the RunPod console</li>
+                            <li>Check that billing/credits are set up</li>
+                            <li>Use the <strong>Test</strong> button in Settings</li>
+                        </ul>
+
+                        <h3>Inference Issues</h3>
+                        <h4>Adapter validation fails</h4>
+                        <ul>
+                            <li>Point to the <strong>adapter subfolder</strong>, not the parent run directory</li>
+                            <li>Verify the folder contains <code>adapter_config.json</code></li>
+                            <li>Check for weight files (<code>*.safetensors</code> or <code>*.bin</code>)</li>
+                        </ul>
+
+                        <h3>Getting Help</h3>
+                        <ul>
+                            <li><strong>GitHub Issues:</strong> <a href="https://github.com/SourceBox-LLC/FineFoundry/issues" target="_blank">Report bugs</a></li>
+                            <li><strong>GitHub Discussions:</strong> <a href="https://github.com/SourceBox-LLC/FineFoundry/discussions" target="_blank">Ask questions</a></li>
+                        </ul>
+                    </div>
+
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-4 border-top border-secondary mt-auto">
+    <footer class="py-4 border-top border-secondary">
         <div class="container text-center small text-muted">
-            <div>FineFoundry &mdash; Dataset Curation &amp; Model Fine-Tuning Studio</div>
-            <div class="mt-1">
-                <a href="https://github.com/SourceBox-LLC/FineFoundry" target="_blank" class="text-decoration-none">View on GitHub</a>
+            <div>FineFoundry — Dataset Curation & Model Fine-Tuning Studio</div>
+            <div class="mt-2">
+                <a href="index.html" class="text-decoration-none me-3">Home</a>
+                <a href="https://github.com/SourceBox-LLC/FineFoundry" target="_blank" class="text-decoration-none">GitHub</a>
             </div>
         </div>
     </footer>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="js/script.js"></script>
+    <script>
+        // Docs sidebar navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const sidebar = document.querySelector('.docs-sidebar');
+            if (sidebar) {
+                const links = sidebar.querySelectorAll('.nav-link');
+                const sections = document.querySelectorAll('.doc-section');
+
+                // Click handler
+                links.forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        links.forEach(l => l.classList.remove('active'));
+                        this.classList.add('active');
+                        const target = document.querySelector(this.getAttribute('href'));
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    });
+                });
+
+                // Scroll spy
+                function updateActiveLink() {
+                    const scrollPos = window.scrollY + 120;
+                    sections.forEach(section => {
+                        const top = section.offsetTop;
+                        const height = section.offsetHeight;
+                        const id = section.getAttribute('id');
+                        if (scrollPos >= top && scrollPos < top + height) {
+                            links.forEach(link => {
+                                link.classList.remove('active');
+                                if (link.getAttribute('href') === '#' + id) {
+                                    link.classList.add('active');
+                                }
+                            });
+                        }
+                    });
+                }
+                window.addEventListener('scroll', updateActiveLink);
+                updateActiveLink();
+            }
+        });
+    </script>
 </body>
 </html>
