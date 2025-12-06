@@ -103,11 +103,17 @@
                                         <div class="accordion-body">
                                             <h6 class="text-success"><i class="bi bi-plus-circle me-2"></i>Added</h6>
                                             <ul>
+                                                <li>New <strong>Inference Tab</strong> for local inference against fine-tuned adapters with prompt history and Full Chat View</li>
                                                 <li>Unsloth-based LoRA training image and shared local inference stack powering the Training and Inference tabs</li>
                                             </ul>
                                             <h6 class="text-info"><i class="bi bi-arrow-up-circle me-2"></i>Improved</h6>
                                             <ul>
+                                                <li>Project reorganization and codebase restructuring for better maintainability</li>
                                                 <li>Major UI cleanup with substantial visual improvements across the application</li>
+                                            </ul>
+                                            <h6 class="text-warning"><i class="bi bi-wrench me-2"></i>Fixed</h6>
+                                            <ul>
+                                                <li>Various bug fixes and stability improvements</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -337,67 +343,76 @@
                     <h3 class="mb-4 text-center">Technical Highlights</h3>
                 </div>
             </div>
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-3">
-                    <div class="tech-feature">
-                        <i class="bi bi-window-desktop text-primary me-2"></i>
-                        <strong>Native Desktop App</strong>
+            <div class="row g-3">
+                <div class="col-6 col-lg-3">
+                    <div class="tech-feature h-100 p-3 rounded border border-secondary">
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="bi bi-window-desktop text-primary me-2"></i>
+                            <strong>Native Desktop App</strong>
+                        </div>
                         <p class="text-muted mb-0 small">Built with Flet for cross-platform native UI</p>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="tech-feature">
-                        <i class="bi bi-shield-lock-fill text-primary me-2"></i>
-                        <strong>Privacy-Focused</strong>
-                        <p class="text-muted mb-0 small">All processing happens locally on your machine</p>
+                <div class="col-6 col-lg-3">
+                    <div class="tech-feature h-100 p-3 rounded border border-secondary">
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="bi bi-lightning-charge-fill text-primary me-2"></i>
+                            <strong>Unsloth Training</strong>
+                        </div>
+                        <p class="text-muted mb-0 small">LoRA fine-tuning with PyTorch, Transformers, PEFT, bitsandbytes</p>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="tech-feature">
-                        <i class="bi bi-cloud-arrow-up-fill text-primary me-2"></i>
-                        <strong>Hub Integration</strong>
+                <div class="col-6 col-lg-3">
+                    <div class="tech-feature h-100 p-3 rounded border border-secondary">
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="bi bi-cloud-arrow-up-fill text-primary me-2"></i>
+                            <strong>Hub Integration</strong>
+                        </div>
                         <p class="text-muted mb-0 small">Seamless Hugging Face Hub push and pull</p>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="tech-feature">
-                        <i class="bi bi-stack text-primary me-2"></i>
-                        <strong>Modular Architecture</strong>
-                        <p class="text-muted mb-0 small">Use as GUI or programmatic API</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="tech-feature">
-                        <i class="bi bi-shuffle text-primary me-2"></i>
-                        <strong>Contextual Pairing</strong>
-                        <p class="text-muted mb-0 small">Quote-chain, cumulative, and adjacent modes</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="tech-feature">
-                        <i class="bi bi-server text-primary me-2"></i>
-                        <strong>RunPod Automation</strong>
+                <div class="col-6 col-lg-3">
+                    <div class="tech-feature h-100 p-3 rounded border border-secondary">
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="bi bi-server text-primary me-2"></i>
+                            <strong>RunPod Automation</strong>
+                        </div>
                         <p class="text-muted mb-0 small">Automated pod and network volume management</p>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="tech-feature">
-                        <i class="bi bi-download text-primary me-2"></i>
-                        <strong>Dataset Download</strong>
-                        <p class="text-muted mb-0 small">Download merged datasets directly from the UI</p>
+                <div class="col-6 col-lg-3">
+                    <div class="tech-feature h-100 p-3 rounded border border-secondary">
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="bi bi-shield-lock-fill text-primary me-2"></i>
+                            <strong>Privacy-Focused</strong>
+                        </div>
+                        <p class="text-muted mb-0 small">All processing happens locally on your machine</p>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="tech-feature">
-                        <i class="bi bi-lightning-charge-fill text-primary me-2"></i>
-                        <strong>Unsloth Fine-Tuning Stack</strong>
-                        <p class="text-muted mb-0 small">LoRA training built on PyTorch, Transformers, PEFT, and bitsandbytes.</p>
+                <div class="col-6 col-lg-3">
+                    <div class="tech-feature h-100 p-3 rounded border border-secondary">
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="bi bi-shuffle text-primary me-2"></i>
+                            <strong>Contextual Pairing</strong>
+                        </div>
+                        <p class="text-muted mb-0 small">Quote-chain, cumulative, and adjacent modes</p>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="tech-feature">
-                        <i class="bi bi-file-earmark-code text-primary me-2"></i>
-                        <strong>MIT Licensed</strong>
+                <div class="col-6 col-lg-3">
+                    <div class="tech-feature h-100 p-3 rounded border border-secondary">
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="bi bi-stack text-primary me-2"></i>
+                            <strong>Modular Architecture</strong>
+                        </div>
+                        <p class="text-muted mb-0 small">Use as GUI or programmatic API</p>
+                    </div>
+                </div>
+                <div class="col-6 col-lg-3">
+                    <div class="tech-feature h-100 p-3 rounded border border-secondary">
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="bi bi-file-earmark-code text-primary me-2"></i>
+                            <strong>MIT Licensed</strong>
+                        </div>
                         <p class="text-muted mb-0 small">Open source and free to use</p>
                     </div>
                 </div>
