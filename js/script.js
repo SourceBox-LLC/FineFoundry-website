@@ -154,4 +154,54 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('%c🔧 FineFoundry 🔧', 'color: #667eea; font-size: 20px; font-weight: bold;');
     console.log('%cDesktop studio for dataset curation and model fine-tuning', 'color: #764ba2; font-size: 14px;');
     console.log('%cGitHub: https://github.com/SourceBox-LLC/FineFoundry', 'color: #333; font-size: 12px;');
+
+    // Documentation sidebar navigation
+    const docsNav = document.querySelector('.docs-nav');
+    if (docsNav) {
+        const docLinks = docsNav.querySelectorAll('.nav-link');
+        const docPanels = document.querySelectorAll('.doc-panel');
+
+        // Click handler for doc nav links
+        docLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Update active state
+                docLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+
+                // Scroll to target panel
+                const targetId = this.getAttribute('href');
+                const targetPanel = document.querySelector(targetId);
+                if (targetPanel) {
+                    targetPanel.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Update active state on scroll
+        function updateDocsNavOnScroll() {
+            const scrollPosition = window.scrollY + 150;
+
+            docPanels.forEach(panel => {
+                const panelTop = panel.offsetTop;
+                const panelHeight = panel.offsetHeight;
+                const panelId = panel.getAttribute('id');
+
+                if (scrollPosition >= panelTop && scrollPosition < panelTop + panelHeight) {
+                    docLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${panelId}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateDocsNavOnScroll);
+    }
 });

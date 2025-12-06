@@ -10,7 +10,7 @@
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css?v=20251103-1">
+    <link rel="stylesheet" href="css/style.css?v=20251206-1">
 </head>
 <body>
     <!-- Navigation -->
@@ -33,8 +33,20 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#features">Features</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#documentation">Documentation</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#documentation" id="docsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Docs
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="docsDropdown">
+                            <li><a class="dropdown-item" href="#documentation"><i class="bi bi-journal-text me-2"></i>Documentation</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#doc-quickstart"><i class="bi bi-rocket-takeoff-fill me-2"></i>Quick Start</a></li>
+                            <li><a class="dropdown-item" href="#doc-training"><i class="bi bi-gpu-card me-2"></i>Training</a></li>
+                            <li><a class="dropdown-item" href="#doc-inference"><i class="bi bi-chat-dots me-2"></i>Inference</a></li>
+                            <li><a class="dropdown-item" href="#doc-cli"><i class="bi bi-terminal me-2"></i>CLI & API</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="docs.html"><i class="bi bi-book me-2"></i>Full Docs Page</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#community">Community</a>
@@ -423,26 +435,76 @@
     <!-- Documentation Section -->
     <section id="documentation" class="py-5 bg-light">
         <div class="container">
-            <div class="row mb-5">
+            <div class="row mb-4">
                 <div class="col-lg-12 text-center">
                     <h2 class="display-4 fw-bold">Documentation</h2>
-                    <p class="lead text-muted">Get started with FineFoundry in minutes</p>
+                    <p class="lead text-muted">Everything you need to get started with FineFoundry</p>
                 </div>
             </div>
 
-            <!-- Quick Start -->
-            <div class="row mb-5">
-                <div class="col-lg-12">
-                    <div class="card shadow-sm border-0">
-                        <div class="card-body p-4">
-                            <h3 class="mb-4"><i class="bi bi-rocket-takeoff-fill text-primary me-2"></i>Quick Start</h3>
+            <div class="row">
+                <!-- Docs Sidebar -->
+                <div class="col-lg-3 mb-4">
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body p-3">
+                            <h6 class="text-uppercase text-muted small fw-bold mb-3">Documentation</h6>
+                            <nav class="nav flex-column docs-nav">
+                                <a class="nav-link px-2 py-2 rounded active" href="#doc-quickstart" data-doc="quickstart">
+                                    <i class="bi bi-rocket-takeoff-fill me-2"></i>Quick Start
+                                </a>
+                                <a class="nav-link px-2 py-2 rounded" href="#doc-scrape" data-doc="scrape">
+                                    <i class="bi bi-search me-2"></i>Scrape Tab
+                                </a>
+                                <a class="nav-link px-2 py-2 rounded" href="#doc-build" data-doc="build">
+                                    <i class="bi bi-hammer me-2"></i>Build & Publish
+                                </a>
+                                <a class="nav-link px-2 py-2 rounded" href="#doc-training" data-doc="training">
+                                    <i class="bi bi-gpu-card me-2"></i>Training Tab
+                                </a>
+                                <a class="nav-link px-2 py-2 rounded" href="#doc-inference" data-doc="inference">
+                                    <i class="bi bi-chat-dots me-2"></i>Inference Tab
+                                </a>
+                                <a class="nav-link px-2 py-2 rounded" href="#doc-merge" data-doc="merge">
+                                    <i class="bi bi-shuffle me-2"></i>Merge Datasets
+                                </a>
+                                <a class="nav-link px-2 py-2 rounded" href="#doc-analysis" data-doc="analysis">
+                                    <i class="bi bi-pie-chart me-2"></i>Dataset Analysis
+                                </a>
+                                <a class="nav-link px-2 py-2 rounded" href="#doc-cli" data-doc="cli">
+                                    <i class="bi bi-terminal me-2"></i>CLI & API
+                                </a>
+                                <a class="nav-link px-2 py-2 rounded" href="#doc-deployment" data-doc="deployment">
+                                    <i class="bi bi-box-seam me-2"></i>Deployment
+                                </a>
+                                <a class="nav-link px-2 py-2 rounded" href="#doc-settings" data-doc="settings">
+                                    <i class="bi bi-gear me-2"></i>Settings
+                                </a>
+                            </nav>
+                            <hr class="my-3">
+                            <a href="docs.html" class="btn btn-outline-primary btn-sm w-100">
+                                <i class="bi bi-journal-text me-2"></i>Full Docs Page
+                            </a>
+                            <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs" target="_blank" class="btn btn-outline-secondary btn-sm w-100 mt-2">
+                                <i class="bi bi-github me-2"></i>GitHub Docs
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-                            <div class="row">
-                                <div class="col-md-6 mb-4">
-                                    <h5>Installation (uv recommended)</h5>
-                                    <p class="text-muted">Clone the repo and run with <code>uv</code>, or use a classic virtualenv.</p>
+                <!-- Docs Content -->
+                <div class="col-lg-9">
+                    <!-- Quick Start -->
+                    <div id="doc-quickstart" class="doc-panel">
+                        <div class="card shadow-sm border-0">
+                            <div class="card-body p-4">
+                                <h3 class="mb-4"><i class="bi bi-rocket-takeoff-fill text-primary me-2"></i>Quick Start</h3>
 
-                                    <pre class="bg-dark text-light p-3 rounded"><code># Recommended: uv (matches project docs)
+                                <div class="row">
+                                    <div class="col-md-6 mb-4">
+                                        <h5>Installation (uv recommended)</h5>
+                                        <p class="text-muted">Clone the repo and run with <code>uv</code>, or use a classic virtualenv.</p>
+
+                                        <pre class="bg-dark text-light p-3 rounded"><code># Recommended: uv (matches project docs)
 git clone https://github.com/SourceBox-LLC/FineFoundry.git FineFoundry-Core
 cd FineFoundry-Core
 
@@ -463,13 +525,13 @@ source venv/bin/activate
 
 # Install dependencies
 pip install -r requirements.txt</code></pre>
-                                </div>
+                                    </div>
 
-                                <div class="col-md-6 mb-4">
-                                    <h5>Launch the App</h5>
-                                    <p class="text-muted">Start the desktop application</p>
+                                    <div class="col-md-6 mb-4">
+                                        <h5>Launch the App</h5>
+                                        <p class="text-muted">Start the desktop application</p>
 
-                                    <pre class="bg-dark text-light p-3 rounded"><code># If using uv (recommended)
+                                        <pre class="bg-dark text-light p-3 rounded"><code># If using uv (recommended)
 uv run src/main.py
 
 # If using a virtualenv + pip
@@ -478,137 +540,229 @@ python src/main.py
 # Or use Flet directly
 flet run src/main.py</code></pre>
 
-                                    <p class="mt-3">The desktop window will open with tabs for Scrape, Build/Publish, Training, Inference, Merge, Analysis, and Settings.</p>
+                                        <p class="mt-3">The desktop window will open with tabs for Scrape, Build/Publish, Training, Inference, Merge, Analysis, and Settings.</p>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="alert alert-info mt-3">
-                                <i class="bi bi-info-circle-fill me-2"></i>
-                                <strong>Prerequisites:</strong> Python 3.10+ on Windows, macOS, or Linux. Optional: Hugging Face account for Hub integration.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Usage Guide -->
-            <div class="row mb-5">
-                <div class="col-lg-12">
-                    <div class="card shadow-sm border-0">
-                        <div class="card-body p-4">
-                            <h3 class="mb-4"><i class="bi bi-book text-primary me-2"></i>Usage Guide</h3>
-
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <div class="usage-card p-3 border rounded">
-                                        <h5><i class="bi bi-search text-primary me-2"></i>Scrape Tab</h5>
-                                        <p class="text-muted small mb-2">Scrape conversational data from multiple sources</p>
-                                        <ul class="small mb-0">
-                                            <li>Select boards/sources to scrape</li>
-                                            <li>Configure parameters (max threads, pairs, delay)</li>
-                                            <li>Monitor live progress and stats</li>
-                                            <li>Preview dataset before saving</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="usage-card p-3 border rounded">
-                                        <h5><i class="bi bi-hammer text-primary me-2"></i>Build/Publish Tab</h5>
-                                        <p class="text-muted small mb-2">Create and publish datasets to Hub</p>
-                                        <ul class="small mb-0">
-                                            <li>Build train/val/test splits with sliders</li>
-                                            <li>Configure shuffle, seed, and filters</li>
-                                            <li>Push to Hugging Face Hub</li>
-                                            <li>Auto-generate dataset cards</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="usage-card p-3 border rounded">
-                                        <h5><i class="bi bi-gpu-card text-primary me-2"></i>Training Tab</h5>
-                                        <p class="text-muted small mb-2">Fine-tune models on RunPod or locally</p>
-                                        <ul class="small mb-0">
-                                            <li>Select dataset source and base model</li>
-                                            <li>Configure hyperparameters and LoRA</li>
-                                            <li>Train on RunPod pods or local Docker</li>
-                                            <li>Auto-resume and Hub push support</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="usage-card p-3 border rounded">
-                                        <h5><i class="bi bi-shuffle text-primary me-2"></i>Merge Datasets Tab</h5>
-                                        <p class="text-muted small mb-2">Combine multiple datasets seamlessly</p>
-                                        <ul class="small mb-0">
-                                            <li>Merge JSON files and Hub datasets</li>
-                                            <li>Automatic column mapping</li>
-                                            <li>Filter empty rows and normalize</li>
-                                            <li>Download merged results</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="usage-card p-3 border rounded">
-                                        <h5><i class="bi bi-pie-chart text-primary me-2"></i>Dataset Analysis Tab</h5>
-                                        <p class="text-muted small mb-2">Comprehensive dataset insights</p>
-                                        <ul class="small mb-0">
-                                            <li>Toggle modules: sentiment, toxicity, etc.</li>
-                                            <li>Detect duplicates and data leakage</li>
-                                            <li>Analyze class balance and distribution</li>
-                                            <li>View readability and alignment metrics</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="usage-card p-3 border rounded">
-                                        <h5><i class="bi bi-gear text-primary me-2"></i>Settings Tab</h5>
-                                        <p class="text-muted small mb-2">Configure integrations and preferences</p>
-                                        <ul class="small mb-0">
-                                            <li>Save Hugging Face access token</li>
-                                            <li>Configure proxy settings per scraper</li>
-                                            <li>Set up RunPod API key</li>
-                                            <li>Ollama integration for dataset cards</li>
-                                        </ul>
-                                    </div>
+                                <div class="alert alert-info mt-3">
+                                    <i class="bi bi-info-circle-fill me-2"></i>
+                                    <strong>Prerequisites:</strong> Python 3.10+ on Windows, macOS, or Linux. Optional: Hugging Face account for Hub integration.
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <!-- CLI Usage -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card shadow-sm border-0">
-                        <div class="card-body p-4">
-                            <h3 class="mb-4"><i class="bi bi-terminal text-primary me-2"></i>CLI & Programmatic Usage</h3>
+                    <!-- Scrape Tab -->
+                    <div id="doc-scrape" class="doc-panel mt-4">
+                        <div class="card shadow-sm border-0">
+                            <div class="card-body p-4">
+                                <h3 class="mb-4"><i class="bi bi-search text-primary me-2"></i>Scrape Tab</h3>
+                                <p class="text-muted">Collect conversational training data from multiple sources with configurable pairing modes.</p>
+                                
+                                <h5 class="mt-4">Supported Sources</h5>
+                                <div class="row g-3 mb-4">
+                                    <div class="col-md-4">
+                                        <div class="p-3 border rounded h-100">
+                                            <strong>4chan</strong>
+                                            <p class="small text-muted mb-0">Multi-board scraping with quote-chain and cumulative pairing</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="p-3 border rounded h-100">
+                                            <strong>Reddit</strong>
+                                            <p class="small text-muted mb-0">Subreddits or single posts with parent-child threading</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="p-3 border rounded h-100">
+                                            <strong>Stack Exchange</strong>
+                                            <p class="small text-muted mb-0">Q&A pairs from accepted answers</p>
+                                        </div>
+                                    </div>
+                                </div>
 
-                            <p>FineFoundry also supports command-line and programmatic usage for automation and scripting.</p>
+                                <h5>Key Features</h5>
+                                <ul>
+                                    <li><strong>Pairing Modes:</strong> Contextual (quote-chain), adjacent, or cumulative</li>
+                                    <li><strong>Parameters:</strong> Max threads, max pairs, delay, min length</li>
+                                    <li><strong>Live Progress:</strong> Real-time stats, logs, and progress bar</li>
+                                    <li><strong>Preview:</strong> Inspect scraped data before saving</li>
+                                    <li><strong>Cleaning:</strong> Automatic text normalization and deduplication</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
 
-                            <h6 class="mt-3">Reddit Scraper CLI</h6>
-                            <pre class="bg-dark text-light p-3 rounded"><code># Using uv (recommended)
-uv run src/scrapers/reddit_scraper.py \
-  --url https://www.reddit.com/r/AskReddit/ \
-  --max-posts 50 \
-  --mode contextual \
-  --pairs-path reddit_pairs.json
+                    <!-- Build & Publish -->
+                    <div id="doc-build" class="doc-panel mt-4">
+                        <div class="card shadow-sm border-0">
+                            <div class="card-body p-4">
+                                <h3 class="mb-4"><i class="bi bi-hammer text-primary me-2"></i>Build & Publish Tab</h3>
+                                <p class="text-muted">Create train/val/test splits and publish datasets directly to Hugging Face Hub.</p>
+                                
+                                <h5 class="mt-4">Workflow</h5>
+                                <ol>
+                                    <li>Select your scraped JSON file or existing dataset</li>
+                                    <li>Configure split ratios with sliders (train/val/test)</li>
+                                    <li>Set shuffle and random seed for reproducibility</li>
+                                    <li>Click <strong>Build Dataset</strong> to create splits</li>
+                                    <li>Optionally push to Hugging Face Hub with auto-generated dataset card</li>
+                                </ol>
 
-# Or with activated venv
-python src/scrapers/reddit_scraper.py \
+                                <h5 class="mt-4">Hub Integration</h5>
+                                <ul>
+                                    <li>Authenticate with your HF token (Settings tab or inline)</li>
+                                    <li>Specify repo ID (e.g., <code>username/my-dataset</code>)</li>
+                                    <li>Auto-generate README with dataset statistics</li>
+                                    <li>Private or public repository options</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Training Tab -->
+                    <div id="doc-training" class="doc-panel mt-4">
+                        <div class="card shadow-sm border-0">
+                            <div class="card-body p-4">
+                                <h3 class="mb-4"><i class="bi bi-gpu-card text-primary me-2"></i>Training Tab</h3>
+                                <p class="text-muted">Fine-tune LLMs using an Unsloth-based LoRA training stack on RunPod or locally via Docker.</p>
+                                
+                                <h5 class="mt-4">Training Targets</h5>
+                                <div class="row g-3 mb-4">
+                                    <div class="col-md-6">
+                                        <div class="p-3 border rounded h-100">
+                                            <strong><i class="bi bi-cloud me-2"></i>RunPod</strong>
+                                            <p class="small text-muted mb-0">Cloud GPU training with automated pod and network volume management</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="p-3 border rounded h-100">
+                                            <strong><i class="bi bi-box-seam me-2"></i>Local Docker</strong>
+                                            <p class="small text-muted mb-0">Train on your local GPU using the same Unsloth trainer image</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <h5>Under the Hood</h5>
+                                <p>Both targets use <code>docker.io/sbussiso/unsloth-trainer:latest</code> with:</p>
+                                <ul>
+                                    <li><strong>PyTorch</strong> for accelerated training</li>
+                                    <li><strong>Hugging Face Transformers</strong> for model loading</li>
+                                    <li><strong>bitsandbytes</strong> for 4-bit quantization</li>
+                                    <li><strong>PEFT / LoRA</strong> via Unsloth for parameter-efficient fine-tuning</li>
+                                </ul>
+
+                                <h5 class="mt-4">Key Features</h5>
+                                <ul>
+                                    <li>Beginner and Advanced hyperparameter modes</li>
+                                    <li>Save and load training configurations</li>
+                                    <li>Auto-resume from checkpoints</li>
+                                    <li>Quick Local Inference after successful runs</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Inference Tab -->
+                    <div id="doc-inference" class="doc-panel mt-4">
+                        <div class="card shadow-sm border-0">
+                            <div class="card-body p-4">
+                                <h3 class="mb-4"><i class="bi bi-chat-dots text-primary me-2"></i>Inference Tab</h3>
+                                <p class="text-muted">Run local inference against your fine-tuned adapters with prompt history and Full Chat View.</p>
+                                
+                                <h5 class="mt-4">Features</h5>
+                                <ul>
+                                    <li><strong>Adapter Selection:</strong> Point to any LoRA adapter directory</li>
+                                    <li><strong>Instant Validation:</strong> Verify adapter files before loading</li>
+                                    <li><strong>Generation Presets:</strong> Deterministic, Balanced, Creative, or Custom</li>
+                                    <li><strong>Full Chat View:</strong> Multi-turn conversation dialog</li>
+                                    <li><strong>Prompt History:</strong> Scroll through previous prompts and responses</li>
+                                </ul>
+
+                                <h5 class="mt-4">Under the Hood</h5>
+                                <p>Powered by the same stack as training:</p>
+                                <ul>
+                                    <li><strong>Transformers</strong> (<code>AutoModelForCausalLM</code>, <code>AutoTokenizer</code>)</li>
+                                    <li><strong>PEFT</strong> (<code>PeftModel</code>) for adapter loading</li>
+                                    <li><strong>bitsandbytes</strong> 4-bit quantization on CUDA</li>
+                                    <li>100% local - no external API calls</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Merge Datasets -->
+                    <div id="doc-merge" class="doc-panel mt-4">
+                        <div class="card shadow-sm border-0">
+                            <div class="card-body p-4">
+                                <h3 class="mb-4"><i class="bi bi-shuffle text-primary me-2"></i>Merge Datasets</h3>
+                                <p class="text-muted">Combine multiple datasets from local files or Hugging Face Hub into a unified training set.</p>
+                                
+                                <h5 class="mt-4">Supported Sources</h5>
+                                <ul>
+                                    <li>Local JSON files</li>
+                                    <li>Hugging Face Hub datasets</li>
+                                    <li>Mixed sources in a single merge</li>
+                                </ul>
+
+                                <h5 class="mt-4">Features</h5>
+                                <ul>
+                                    <li><strong>Automatic Column Mapping:</strong> Align different column names</li>
+                                    <li><strong>Filtering:</strong> Remove empty rows and normalize text</li>
+                                    <li><strong>Preview:</strong> Inspect merged results before saving</li>
+                                    <li><strong>Download:</strong> Export merged dataset as JSON</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dataset Analysis -->
+                    <div id="doc-analysis" class="doc-panel mt-4">
+                        <div class="card shadow-sm border-0">
+                            <div class="card-body p-4">
+                                <h3 class="mb-4"><i class="bi bi-pie-chart text-primary me-2"></i>Dataset Analysis</h3>
+                                <p class="text-muted">Comprehensive quality analysis with togglable modules for different metrics.</p>
+                                
+                                <h5 class="mt-4">Analysis Modules</h5>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <ul class="mb-0">
+                                            <li><strong>Sentiment Analysis</strong></li>
+                                            <li><strong>Toxicity Detection</strong></li>
+                                            <li><strong>Duplicate Detection</strong></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <ul class="mb-0">
+                                            <li><strong>Data Leakage Check</strong></li>
+                                            <li><strong>Class Balance</strong></li>
+                                            <li><strong>Readability Metrics</strong></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CLI & API -->
+                    <div id="doc-cli" class="doc-panel mt-4">
+                        <div class="card shadow-sm border-0">
+                            <div class="card-body p-4">
+                                <h3 class="mb-4"><i class="bi bi-terminal text-primary me-2"></i>CLI & API</h3>
+                                <p class="text-muted">Automate FineFoundry workflows with command-line tools and Python APIs.</p>
+
+                                <h5 class="mt-4">Reddit Scraper CLI</h5>
+                                <pre class="bg-dark text-light p-3 rounded"><code>uv run src/scrapers/reddit_scraper.py \
   --url https://www.reddit.com/r/AskReddit/ \
   --max-posts 50 \
   --mode contextual \
   --pairs-path reddit_pairs.json</code></pre>
 
-                            <h6 class="mt-3">Dataset Builder CLI</h6>
-                            <pre class="bg-dark text-light p-3 rounded"><code># Configure constants in src/save_dataset.py
-uv run src/save_dataset.py
-# or
-python src/save_dataset.py</code></pre>
+                                <h5 class="mt-4">Dataset Builder CLI</h5>
+                                <pre class="bg-dark text-light p-3 rounded"><code>uv run src/save_dataset.py</code></pre>
 
-                            <h6 class="mt-3">Programmatic 4chan Scraper</h6>
-                            <pre class="bg-dark text-light p-3 rounded"><code>from src.scrapers.fourchan_scraper import scrape
+                                <h5 class="mt-4">Programmatic Scraping</h5>
+                                <pre class="bg-dark text-light p-3 rounded"><code>from src.scrapers.fourchan_scraper import scrape
 
 pairs = scrape(
     board="pol",
@@ -617,18 +771,68 @@ pairs = scrape(
     mode="contextual",
     strategy="cumulative"
 )</code></pre>
-
-                            <div class="alert alert-success mt-3">
-                                <i class="bi bi-book-fill me-2"></i>
-                                <strong>Full Documentation:</strong> Visit the <a href="https://github.com/SourceBox-LLC/FineFoundry/blob/master/README.md" target="_blank">GitHub README</a> and <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs" target="_blank">docs folder</a> for comprehensive guides.
-                            </div>
-                            <div class="text-center mt-4">
-                                <a href="docs.html" class="btn btn-primary btn-lg">
-                                    <i class="bi bi-journal-text me-2"></i>View More Documentation
-                                </a>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Deployment -->
+                    <div id="doc-deployment" class="doc-panel mt-4">
+                        <div class="card shadow-sm border-0">
+                            <div class="card-body p-4">
+                                <h3 class="mb-4"><i class="bi bi-box-seam text-primary me-2"></i>Deployment</h3>
+                                <p class="text-muted">Run training jobs in containers on RunPod or locally.</p>
+                                
+                                <div class="row g-3 mt-4">
+                                    <div class="col-md-6">
+                                        <div class="p-3 border rounded h-100">
+                                            <h5>Local Docker</h5>
+                                            <p class="small text-muted">Default image: <code>docker.io/sbussiso/unsloth-trainer:latest</code></p>
+                                            <ul class="small mb-0">
+                                                <li>Volume mounts for datasets and outputs</li>
+                                                <li>Same LoRA stack as RunPod</li>
+                                                <li>GPU passthrough with NVIDIA runtime</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="p-3 border rounded h-100">
+                                            <h5>RunPod</h5>
+                                            <p class="small text-muted">Cloud GPU training with automated infrastructure</p>
+                                            <ul class="small mb-0">
+                                                <li>Network volume for persistent storage</li>
+                                                <li>Pod template auto-creation</li>
+                                                <li>Outputs at <code>/data/outputs/...</code></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Settings -->
+                    <div id="doc-settings" class="doc-panel mt-4">
+                        <div class="card shadow-sm border-0">
+                            <div class="card-body p-4">
+                                <h3 class="mb-4"><i class="bi bi-gear text-primary me-2"></i>Settings</h3>
+                                <p class="text-muted">Configure authentication, proxies, and integrations.</p>
+                                
+                                <h5 class="mt-4">Configuration Options</h5>
+                                <ul>
+                                    <li><strong>Hugging Face Token:</strong> For Hub push/pull operations</li>
+                                    <li><strong>RunPod API Key:</strong> For cloud training</li>
+                                    <li><strong>Proxy Settings:</strong> Per-scraper proxy configuration (including Tor)</li>
+                                    <li><strong>Ollama Integration:</strong> For AI-generated dataset cards</li>
+                                </ul>
+
+                                <div class="alert alert-info mt-4">
+                                    <i class="bi bi-info-circle-fill me-2"></i>
+                                    Settings are persisted locally and never sent to external servers.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
