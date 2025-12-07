@@ -739,8 +739,18 @@ uv run src/main.py</code></pre>
 
                         <div class="alert alert-info">
                             <i class="bi bi-info-circle-fill me-2"></i>
-                            Settings are persisted locally and never sent to external servers.
+                            Settings are stored in a local SQLite database (<code>finefoundry.db</code>) and never sent to external servers.
                         </div>
+
+                        <h3>Data Storage</h3>
+                        <p>FineFoundry uses SQLite for unified data storage:</p>
+                        <ul>
+                            <li><strong>Settings</strong> – HF token, RunPod API key, Ollama config, proxy</li>
+                            <li><strong>Training Configs</strong> – Saved hyperparameter configurations</li>
+                            <li><strong>Scrape Sessions</strong> – History of all scrape runs</li>
+                            <li><strong>Scraped Pairs</strong> – All input/output pairs from scraping</li>
+                        </ul>
+                        <p>The database is auto-created on first run. Existing JSON files are automatically migrated.</p>
                     </div>
 
                     <!-- CLI Usage -->
