@@ -125,14 +125,44 @@
                         <div class="card-body p-4">
                             <h3 class="mb-4"><i class="bi bi-clock-history text-primary me-2"></i>Changelog Highlights</h3>
                             <div class="accordion" id="changelogAccordion">
+                                <!-- Version 1.6.0 -->
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingSeven">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven">
+                                            <strong class="me-2">v1.6.0</strong> <span class="text-muted">- December 2025</span> <span class="badge bg-success ms-2">Latest</span>
+                                        </button>
+                                    </h2>
+                                    <div id="collapseSeven" class="accordion-collapse collapse show" aria-labelledby="headingSeven" data-bs-parent="#changelogAccordion">
+                                        <div class="accordion-body">
+                                            <h6 class="text-success"><i class="bi bi-plus-circle me-2"></i>Added</h6>
+                                            <ul>
+                                                <li><strong>Synthetic Data CLI</strong> — Full command-line interface for synthetic data generation with all GUI capabilities</li>
+                                                <li><code>--verbose</code> flag for detailed debug output during generation</li>
+                                                <li><code>--config</code> flag to load options from YAML config files</li>
+                                                <li><code>--keep-server</code> flag for model caching between batch runs (10x faster subsequent runs)</li>
+                                                <li>Progress bars with tqdm for chunk processing visualization</li>
+                                                <li>Automatic vLLM server detection and reuse for faster batch processing</li>
+                                                <li>Example config file at <code>examples/synthetic_config.yaml</code></li>
+                                            </ul>
+                                            <h6 class="text-info"><i class="bi bi-arrow-up-circle me-2"></i>Improved</h6>
+                                            <ul>
+                                                <li>Time estimates during synthetic generation showing remaining time per chunk</li>
+                                                <li>Enhanced error messages for CUDA, OOM, and dependency issues</li>
+                                                <li>Expanded test coverage to 414 tests (29% coverage threshold)</li>
+                                                <li>CI reliability with increased UV_HTTP_TIMEOUT for large package downloads</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <!-- Version 1.5.0 -->
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" id="headingSix">
-                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
-                                            <strong class="me-2">v1.5.0</strong> <span class="text-muted">- December 2025</span> <span class="badge bg-success ms-2">Latest</span>
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                            <strong class="me-2">v1.5.0</strong> <span class="text-muted">- December 2025</span>
                                         </button>
                                     </h2>
-                                    <div id="collapseSix" class="accordion-collapse collapse show" aria-labelledby="headingSix" data-bs-parent="#changelogAccordion">
+                                    <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#changelogAccordion">
                                         <div class="accordion-body">
                                             <h6 class="text-success"><i class="bi bi-plus-circle me-2"></i>Added</h6>
                                             <ul>
