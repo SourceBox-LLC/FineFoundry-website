@@ -591,11 +591,14 @@ uv run src/main.py</code></pre>
                         <h3>Quick Local Inference</h3>
                         <p>After a successful local run, the Quick Local Inference panel appears:</p>
                         <ul>
-                            <li>Enter a prompt and click <strong>Run Inference</strong></li>
+                            <li><strong>Sample prompts</strong> – 5 random prompts from your training dataset are auto-loaded for quick testing</li>
+                            <li>Enter a prompt manually or select a sample from the dropdown</li>
                             <li>Choose presets: Deterministic, Balanced, or Creative</li>
                             <li>Adjust temperature and max tokens with sliders</li>
                             <li>View prompt/response history</li>
+                            <li><strong>Export chats</strong> – Save your prompt/response history to a text file</li>
                         </ul>
+                        <p class="text-muted">The sample prompts feature lets you quickly verify your model learned from the training data without manually copying prompts.</p>
 
                         <h3>Saving Configurations</h3>
                         <p>Training configs are stored in the SQLite database:</p>
@@ -616,12 +619,25 @@ uv run src/main.py</code></pre>
 
                         <h3>Features</h3>
                         <ul>
-                            <li><strong>Adapter Selection</strong> – Point to any LoRA adapter directory on disk</li>
+                            <li><strong>Adapter Selection</strong> – Point to any LoRA adapter directory or select from training runs</li>
                             <li><strong>Instant Validation</strong> – Verifies adapter files before loading</li>
+                            <li><strong>Dataset Selector</strong> – Choose any saved dataset to sample prompts from</li>
+                            <li><strong>Sample Prompts</strong> – Get 5 random prompts from selected dataset for quick testing</li>
                             <li><strong>Generation Presets</strong> – Deterministic, Balanced, Creative, or Custom</li>
-                            <li><strong>Full Chat View</strong> – Multi-turn conversation dialog</li>
+                            <li><strong>Full Chat View</strong> – Multi-turn conversation dialog with proper chat templates</li>
+                            <li><strong>Export Chats</strong> – Save prompt/response history to text files</li>
                             <li><strong>Prompt History</strong> – Scroll through previous prompts and responses</li>
                         </ul>
+
+                        <h3>Sample Prompts</h3>
+                        <p>The Inference tab lets you select <strong>any saved dataset</strong> to sample prompts from:</p>
+                        <ol>
+                            <li>Select a dataset from the <strong>Dataset for sample prompts</strong> dropdown</li>
+                            <li>5 random prompts are loaded into the <strong>Sample prompts</strong> dropdown</li>
+                            <li>Click the refresh button to get new random samples</li>
+                            <li>Select a sample to automatically fill the prompt text area</li>
+                        </ol>
+                        <p class="text-muted">Unlike Quick Local Inference (which only uses the training dataset), the Inference tab can test against any dataset in your database.</p>
 
                         <h3>Adapter Validation</h3>
                         <p>When you select an adapter directory, FineFoundry:</p>
@@ -648,6 +664,7 @@ uv run src/main.py</code></pre>
                             <li>Large chat area with user/assistant bubbles</li>
                             <li>Multiline message composer</li>
                             <li>Shared conversation history with main view</li>
+                            <li>Proper chat templates for multi-turn conversations</li>
                             <li>Clear history and close buttons</li>
                         </ul>
 
@@ -657,6 +674,8 @@ uv run src/main.py</code></pre>
                             <li><strong>Transformers</strong> – <code>AutoModelForCausalLM</code>, <code>AutoTokenizer</code></li>
                             <li><strong>PEFT</strong> – <code>PeftModel</code> for adapter loading</li>
                             <li><strong>bitsandbytes</strong> – 4-bit quantization on CUDA</li>
+                            <li><strong>Chat Templates</strong> – Proper formatting for instruct models (Llama-3.1, etc.)</li>
+                            <li><strong>Repetition Penalty</strong> – Prevents degenerate/looping outputs</li>
                             <li><strong>100% local</strong> – No external API calls</li>
                         </ul>
                     </div>
