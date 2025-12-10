@@ -31,7 +31,7 @@
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css?v=20251208-1">
+    <link rel="stylesheet" href="css/style.css?v=20251209-1">
 
     <style>
         .docs-hero {
@@ -495,13 +495,13 @@ uv run src/main.py</code></pre>
                     <!-- Build & Publish -->
                     <div id="build-publish" class="doc-section">
                         <h2><i class="bi bi-hammer text-primary me-2"></i>Build & Publish Tab</h2>
-                        <p>Convert raw JSON data into structured Hugging Face datasets and optionally push to the Hub.</p>
+                        <p>Convert scraped data into structured Hugging Face datasets and optionally push to the Hub.</p>
 
                         <img src="img/ff_buld_publish.png" alt="Build & Publish Tab Screenshot" class="img-fluid rounded shadow-sm my-4" style="max-width: 100%;">
 
                         <h3>Workflow</h3>
                         <ol>
-                            <li>Select a <strong>Data file (JSON)</strong> from scraping</li>
+                            <li>Select a <strong>Database Session</strong> from your scrape history or a Hugging Face dataset</li>
                             <li>Configure <strong>split ratios</strong> (train/validation/test)</li>
                             <li>Set <strong>shuffle</strong> and <strong>seed</strong> for reproducibility</li>
                             <li>Click <strong>Build Dataset</strong></li>
@@ -527,7 +527,7 @@ uv run src/main.py</code></pre>
 
                         <h3>Example: Local Splits Only</h3>
                         <ol>
-                            <li>Set Data file to <code>scraped_training_data.json</code></li>
+                            <li>Select your database session from the dropdown</li>
                             <li>Set Validation to <code>0.05</code>, Test to <code>0.0</code></li>
                             <li>Enable Shuffle, set Seed to <code>42</code></li>
                             <li>Set Save dir to <code>hf_dataset</code></li>
@@ -598,11 +598,12 @@ uv run src/main.py</code></pre>
                         </ul>
 
                         <h3>Saving Configurations</h3>
-                        <p>Training configs are saved as JSON files under <code>src/saved_configs/</code>:</p>
+                        <p>Training configs are stored in the SQLite database:</p>
                         <ul>
                             <li>Click <strong>Save current setup</strong> to snapshot your configuration</li>
                             <li>Use the dropdown to load saved configs</li>
                             <li>The last used config auto-loads on startup</li>
+                            <li>All configs persist across sessions in <code>finefoundry.db</code></li>
                         </ul>
                     </div>
 
@@ -670,7 +671,7 @@ uv run src/main.py</code></pre>
                         <h3>Use Cases</h3>
                         <ul>
                             <li>Combining data from multiple scraping sessions</li>
-                            <li>Merging Hugging Face datasets with local JSON files</li>
+                            <li>Merging Hugging Face datasets with database sessions</li>
                             <li>Creating larger, more diverse training datasets</li>
                         </ul>
 
@@ -682,8 +683,8 @@ uv run src/main.py</code></pre>
 
                         <h3>Supported Sources</h3>
                         <ul>
+                            <li><strong>Database Session</strong> – Load from your scrape history</li>
                             <li><strong>Hugging Face</strong> – Load from Hub with repo, split, and config</li>
-                            <li><strong>JSON file</strong> – Load from local JSON files</li>
                         </ul>
 
                         <h3>Column Mapping</h3>
@@ -694,14 +695,14 @@ uv run src/main.py</code></pre>
                             <li>Filters rows with empty input or output</li>
                         </ul>
 
-                        <h3>Output Formats</h3>
+                        <h3>Output</h3>
                         <ul>
-                            <li><strong>JSON file</strong> – Simple, portable format for smaller datasets</li>
-                            <li><strong>HF dataset dir</strong> – Memory-efficient for large datasets (100k+ records)</li>
+                            <li><strong>Database</strong> – Merged data saved to a new database session</li>
+                            <li><strong>Database + Export JSON</strong> – Also export to JSON for external tools</li>
                         </ul>
 
                         <h3>Download Merged Dataset</h3>
-                        <p>After a successful merge, click <strong>Download Merged Dataset</strong> to copy the result to another location.</p>
+                        <p>If you enabled JSON export, click <strong>Download Merged Dataset</strong> to copy the result to another location.</p>
                     </div>
 
                     <!-- Analysis Tab -->
@@ -733,7 +734,7 @@ uv run src/main.py</code></pre>
 
                         <h3>Workflow</h3>
                         <ol>
-                            <li>Select dataset source (JSON or Hugging Face)</li>
+                            <li>Select dataset source (Database Session or Hugging Face)</li>
                             <li>Enable the analysis modules you need</li>
                             <li>Click <strong>Analyze Dataset</strong></li>
                             <li>Review summary stats and visualizations</li>
@@ -783,14 +784,16 @@ uv run src/main.py</code></pre>
                         </div>
 
                         <h3>Data Storage</h3>
-                        <p>FineFoundry uses SQLite for unified data storage:</p>
+                        <p>FineFoundry uses SQLite (<code>finefoundry.db</code>) as the <strong>sole storage mechanism</strong> for all application data:</p>
                         <ul>
                             <li><strong>Settings</strong> – HF token, RunPod API key, Ollama config, proxy</li>
                             <li><strong>Training Configs</strong> – Saved hyperparameter configurations</li>
                             <li><strong>Scrape Sessions</strong> – History of all scrape runs</li>
                             <li><strong>Scraped Pairs</strong> – All input/output pairs from scraping</li>
+                            <li><strong>Training Runs</strong> – Managed training runs with logs and metadata</li>
+                            <li><strong>App Logs</strong> – All application logs stored in database</li>
                         </ul>
-                        <p>The database is auto-created on first run. Existing JSON files are automatically migrated.</p>
+                        <p>The database is auto-created on first run. There are no filesystem fallbacks or legacy JSON files.</p>
                     </div>
 
                     <!-- CLI Usage -->
@@ -860,17 +863,14 @@ pairs = scrape(
 # pairs is a list of {"input": ..., "output": ...} dicts</code></pre>
 
                         <h3>Dataset Builder</h3>
-                        <pre class="bg-dark text-light p-3 rounded"><code>from src.helpers.dataset_builder import build_dataset
+                        <pre class="bg-dark text-light p-3 rounded"><code>from src.helpers.build import run_build
+from db.scraped_data import get_pairs_for_session
 
-dataset = build_dataset(
-    data_file="scraped_training_data.json",
-    val_size=0.05,
-    test_size=0.05,
-    shuffle=True,
-    seed=42
-)
+# Load pairs from database session
+pairs = get_pairs_for_session(session_id=1)
 
-# dataset is a datasets.DatasetDict with train/val/test splits</code></pre>
+# Build dataset from pairs
+# (typically done via GUI or save_dataset.py CLI)</code></pre>
 
                         <h3>Local Inference</h3>
                         <pre class="bg-dark text-light p-3 rounded"><code>from src.helpers.local_inference import generate_response
