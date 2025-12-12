@@ -264,6 +264,9 @@
                                     <a class="nav-link" href="#troubleshooting">
                                         <i class="bi bi-question-circle me-2"></i>Troubleshooting
                                     </a>
+                                    <a class="nav-link" href="#upgrade-notes">
+                                        <i class="bi bi-arrow-up-circle me-2"></i>Upgrade Notes
+                                    </a>
                                 </nav>
                                 <hr class="my-2">
                                 <div class="p-2">
@@ -321,7 +324,7 @@ python -m venv venv
 source venv/bin/activate
 
 # Install dependencies
-pip install -r requirements.txt
+pip install -e .
 
 # Run the application
 python src/main.py</code></pre>
@@ -332,7 +335,7 @@ python src/main.py</code></pre>
                             <li><strong>Scrape</strong> – Collect training data from 4chan, Reddit, or Stack Exchange</li>
                             <li><strong>Build / Publish</strong> – Create datasets and publish to Hugging Face</li>
                             <li><strong>Training</strong> – Fine-tune models on RunPod or locally via Docker</li>
-                            <li><strong>Inference</strong> – Run inference against fine-tuned adapters</li>
+                            <li><strong>Inference</strong> – Run inference against adapters from completed training runs</li>
                             <li><strong>Merge Datasets</strong> – Combine multiple datasets</li>
                             <li><strong>Dataset Analysis</strong> – Analyze dataset quality</li>
                             <li><strong>Settings</strong> – Configure authentication and preferences</li>
@@ -351,7 +354,7 @@ python src/main.py</code></pre>
                                     <li><strong>Min Length</strong>: 10 characters</li>
                                 </ul>
                             </li>
-                            <li>Click <strong>Start Scrape</strong></li>
+                            <li>Click <strong>Start</strong></li>
                             <li>When complete, click <strong>Preview Dataset</strong></li>
                         </ol>
 
@@ -458,6 +461,10 @@ uv run src/main.py</code></pre>
                             <strong>💡 Best Practice:</strong> Start with smaller runs (50 threads, 500 pairs) to validate your configuration before scaling up.
                         </div>
 
+                        <div class="alert alert-warning">
+                            <strong>Offline Mode:</strong> Only the <strong>Synthetic</strong> data source can be used. Network sources (4chan/Reddit/Stack Exchange) are disabled.
+                        </div>
+
                         <h3 id="synthetic-data">Synthetic Data Generation</h3>
                         <p>Generate training data from your own documents using local LLMs powered by Unsloth's SyntheticDataKit.</p>
                         
@@ -495,13 +502,13 @@ uv run src/main.py</code></pre>
                     <!-- Build & Publish -->
                     <div id="build-publish" class="doc-section">
                         <h2><i class="bi bi-hammer text-primary me-2"></i>Build & Publish Tab</h2>
-                        <p>Convert scraped data into structured Hugging Face datasets and optionally push to the Hub.</p>
+                        <p>Build train/validation/test splits from a database session and optionally push the resulting dataset to the Hugging Face Hub.</p>
 
                         <img src="img/ff_buld_publish.png" alt="Build & Publish Tab Screenshot" class="img-fluid rounded shadow-sm my-4" style="max-width: 100%;">
 
                         <h3>Workflow</h3>
                         <ol>
-                            <li>Select a <strong>Database Session</strong> from your scrape history or a Hugging Face dataset</li>
+                            <li>Select a <strong>Database Session</strong> from your scrape history</li>
                             <li>Configure <strong>split ratios</strong> (train/validation/test)</li>
                             <li>Set <strong>shuffle</strong> and <strong>seed</strong> for reproducibility</li>
                             <li>Click <strong>Build Dataset</strong></li>
@@ -533,6 +540,10 @@ uv run src/main.py</code></pre>
                             <li>Set Save dir to <code>hf_dataset</code></li>
                             <li>Click <strong>Build Dataset</strong></li>
                         </ol>
+
+                        <div class="alert alert-warning">
+                            <strong>Offline Mode:</strong> Hugging Face Hub push actions are disabled.
+                        </div>
                     </div>
 
                     <!-- Training Tab -->
@@ -608,18 +619,22 @@ uv run src/main.py</code></pre>
                             <li>The last used config auto-loads on startup</li>
                             <li>All configs persist across sessions in <code>finefoundry.db</code></li>
                         </ul>
+
+                        <div class="alert alert-warning">
+                            <strong>Offline Mode:</strong> RunPod training and Hugging Face Hub actions are disabled; local-only workflows are enforced.
+                        </div>
                     </div>
 
                     <!-- Inference Tab -->
                     <div id="inference-tab" class="doc-section">
                         <h2><i class="bi bi-chat-dots text-primary me-2"></i>Inference Tab</h2>
-                        <p>Run local inference against fine-tuned adapters with prompt history and Full Chat View.</p>
+                        <p>Run local inference against adapters from completed training runs with prompt history and Full Chat View.</p>
 
                         <img src="img/ff_inferance.png" alt="Inference Tab Screenshot" class="img-fluid rounded shadow-sm my-4" style="max-width: 100%;">
 
                         <h3>Features</h3>
                         <ul>
-                            <li><strong>Adapter Selection</strong> – Point to any LoRA adapter directory or select from training runs</li>
+                            <li><strong>Training run selection</strong> – Choose a completed training run (FineFoundry loads the adapter path automatically)</li>
                             <li><strong>Instant Validation</strong> – Verifies adapter files before loading</li>
                             <li><strong>Dataset Selector</strong> – Choose any saved dataset to sample prompts from</li>
                             <li><strong>Sample Prompts</strong> – Get 5 random prompts from selected dataset for quick testing</li>
@@ -640,7 +655,7 @@ uv run src/main.py</code></pre>
                         <p class="text-muted">Unlike Quick Local Inference (which only uses the training dataset), the Inference tab can test against any dataset in your database.</p>
 
                         <h3>Adapter Validation</h3>
-                        <p>When you select an adapter directory, FineFoundry:</p>
+                        <p>When you select a training run, FineFoundry:</p>
                         <ol>
                             <li>Shows a loading spinner while checking the folder</li>
                             <li>Verifies the directory contains LoRA artifacts (<code>adapter_config.json</code>, weight files)</li>
@@ -690,7 +705,7 @@ uv run src/main.py</code></pre>
                         <h3>Use Cases</h3>
                         <ul>
                             <li>Combining data from multiple scraping sessions</li>
-                            <li>Merging Hugging Face datasets with database sessions</li>
+                            <li>Merging database sessions with Hugging Face datasets (when online)</li>
                             <li>Creating larger, more diverse training datasets</li>
                         </ul>
 
@@ -703,8 +718,12 @@ uv run src/main.py</code></pre>
                         <h3>Supported Sources</h3>
                         <ul>
                             <li><strong>Database Session</strong> – Load from your scrape history</li>
-                            <li><strong>Hugging Face</strong> – Load from Hub with repo, split, and config</li>
+                            <li><strong>Hugging Face</strong> – Load from Hub with repo, split, and config (when online)</li>
                         </ul>
+
+                        <div class="alert alert-warning">
+                            <strong>Offline Mode:</strong> Hugging Face dataset sources are disabled; database sessions remain available.
+                        </div>
 
                         <h3>Column Mapping</h3>
                         <p>FineFoundry automatically handles column mapping:</p>
@@ -753,11 +772,15 @@ uv run src/main.py</code></pre>
 
                         <h3>Workflow</h3>
                         <ol>
-                            <li>Select dataset source (Database Session or Hugging Face)</li>
+                            <li>Select dataset source (Database Session, or Hugging Face when online)</li>
                             <li>Enable the analysis modules you need</li>
                             <li>Click <strong>Analyze Dataset</strong></li>
                             <li>Review summary stats and visualizations</li>
                         </ol>
+
+                        <div class="alert alert-warning">
+                            <strong>Offline Mode:</strong> Hugging Face dataset source and Hugging Face inference backend options are disabled.
+                        </div>
 
                         <div class="tip-box">
                             <strong>💡 Best Practice:</strong> Run analysis before committing to long training runs. Use Duplicates & Similarity to spot unintentional dataset duplication.
@@ -801,6 +824,9 @@ uv run src/main.py</code></pre>
                             <i class="bi bi-info-circle-fill me-2"></i>
                             Settings are stored in a local SQLite database (<code>finefoundry.db</code>) and never sent to external servers.
                         </div>
+
+                        <h3>Offline Mode</h3>
+                        <p>When Offline Mode is enabled, FineFoundry disables actions that require external services (Hugging Face Hub operations, Hugging Face dataset sources, and RunPod training). The UI keeps controls visible where helpful, but disables them and shows inline reasons.</p>
 
                         <h3>Data Storage</h3>
                         <p>FineFoundry uses SQLite (<code>finefoundry.db</code>) as the <strong>sole storage mechanism</strong> for all application data:</p>
@@ -869,7 +895,10 @@ HF_TOKEN = None  # uses env HF_TOKEN if None</code></pre>
                         <p>Use FineFoundry programmatically in your own scripts.</p>
 
                         <h3>4chan Scraper</h3>
-                        <pre class="bg-dark text-light p-3 rounded"><code>from src.scrapers.fourchan_scraper import scrape
+                        <pre class="bg-dark text-light p-3 rounded"><code>import sys
+sys.path.append("src")
+
+from scrapers.fourchan_scraper import scrape
 
 pairs = scrape(
     board="pol",
@@ -882,24 +911,31 @@ pairs = scrape(
 # pairs is a list of {"input": ..., "output": ...} dicts</code></pre>
 
                         <h3>Dataset Builder</h3>
-                        <pre class="bg-dark text-light p-3 rounded"><code>from src.helpers.build import run_build
+                        <pre class="bg-dark text-light p-3 rounded"><code>import sys
+sys.path.append("src")
+
 from db.scraped_data import get_pairs_for_session
+from save_dataset import build_dataset_dict, normalize_records
 
-# Load pairs from database session
+# Load pairs from a database scrape session
 pairs = get_pairs_for_session(session_id=1)
+examples = normalize_records(pairs, min_len=1)
 
-# Build dataset from pairs
-# (typically done via GUI or save_dataset.py CLI)</code></pre>
+# Build a DatasetDict with train/validation/test splits
+dd = build_dataset_dict(examples, val_size=0.05, test_size=0.0)</code></pre>
 
                         <h3>Local Inference</h3>
-                        <pre class="bg-dark text-light p-3 rounded"><code>from src.helpers.local_inference import generate_response
+                        <pre class="bg-dark text-light p-3 rounded"><code>import sys
+sys.path.append("src")
 
-response = generate_response(
-    prompt="What is machine learning?",
-    adapter_path="/path/to/adapter",
+from helpers.local_inference import generate_text
+
+response = generate_text(
     base_model="unsloth/Meta-Llama-3.1-8B-Instruct-bnb-4bit",
+    adapter_path="/path/to/adapter",
+    prompt="What is machine learning?",
     temperature=0.7,
-    max_new_tokens=256
+    max_new_tokens=256,
 )</code></pre>
                     </div>
 
@@ -1041,7 +1077,7 @@ uv run src/main.py</code></pre>
                         <h3>Inference Issues</h3>
                         <h4>Adapter validation fails</h4>
                         <ul>
-                            <li>Point to the <strong>adapter subfolder</strong>, not the parent run directory</li>
+                            <li>Select a <strong>completed training run</strong> (the adapter path is loaded automatically)</li>
                             <li>Verify the folder contains <code>adapter_config.json</code></li>
                             <li>Check for weight files (<code>*.safetensors</code> or <code>*.bin</code>)</li>
                         </ul>
@@ -1051,6 +1087,26 @@ uv run src/main.py</code></pre>
                             <li><strong>GitHub Issues:</strong> <a href="https://github.com/SourceBox-LLC/FineFoundry/issues" target="_blank">Report bugs</a></li>
                             <li><strong>GitHub Discussions:</strong> <a href="https://github.com/SourceBox-LLC/FineFoundry/discussions" target="_blank">Ask questions</a></li>
                         </ul>
+                    </div>
+
+                    <!-- Upgrade Notes -->
+                    <div id="upgrade-notes" class="doc-section">
+                        <h2><i class="bi bi-arrow-up-circle text-primary me-2"></i>Upgrade Notes</h2>
+                        <p>Returning to FineFoundry after using an older version? These are the key behavior changes to know before following older tutorials.</p>
+
+                        <h3>Major changes</h3>
+                        <ul>
+                            <li><strong>Database-first workflows:</strong> Scrape sessions, training configs, training runs, logs, and settings live in <code>finefoundry.db</code>.</li>
+                            <li><strong>Build & Publish is database-session based:</strong> The GUI builds datasets from database scrape sessions (Hub push is optional).</li>
+                            <li><strong>Inference is training-run based:</strong> Select a completed training run; FineFoundry loads and validates its adapter automatically.</li>
+                            <li><strong>Offline Mode gating:</strong> Disables Hugging Face Hub actions, Hugging Face dataset sources, and Runpod training; Scrape tab network sources are disabled.</li>
+                            <li><strong>Dependency management:</strong> The repo uses <code>uv</code> and <code>pyproject.toml</code>; <code>requirements.txt</code> is deprecated.</li>
+                        </ul>
+
+                        <p>
+                            Full details (core docs):
+                            <a href="https://github.com/SourceBox-LLC/FineFoundry/tree/master/docs/user-guide/upgrade-notes.md" target="_blank">Upgrade Notes</a>
+                        </p>
                     </div>
 
                 </div>

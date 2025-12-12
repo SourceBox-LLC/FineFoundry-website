@@ -313,7 +313,7 @@
                                             <h6 class="text-info"><i class="bi bi-arrow-up-circle me-2"></i>Improved</h6>
                                             <ul>
                                                 <li>Migrated from pip to uv for faster dependency management</li>
-                                                <li>Updated Hugging Face dataset integration and added huggingface-hub dependency</li>
+                                                <li>Updated Hugging Face Hub integration and added huggingface-hub dependency</li>
                                                 <li>Removed unused imports and consolidated helper functions</li>
                                                 <li>Code cleanup and refactoring across main modules</li>
                                             </ul>
@@ -458,7 +458,7 @@
                     <div class="feature-card text-center p-4">
                         <i class="bi bi-layers-fill feature-icon text-primary"></i>
                         <h4>Dataset Merging</h4>
-                        <p class="text-muted">Combine multiple database sessions or Hugging Face datasets into unified training sets with automatic column mapping.</p>
+                        <p class="text-muted">Combine multiple database sessions (and optionally Hugging Face datasets when online) into unified training sets with automatic column mapping.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -666,7 +666,7 @@ python -m venv venv
 source venv/bin/activate
 
 # Install dependencies
-pip install -r requirements.txt</code></pre>
+pip install -e .</code></pre>
                                     </div>
 
                                     <div class="col-md-6 mb-4">
@@ -689,6 +689,7 @@ flet run src/main.py</code></pre>
                                 <div class="alert alert-info mt-3">
                                     <i class="bi bi-info-circle-fill me-2"></i>
                                     <strong>Prerequisites:</strong> Python 3.10+ on Windows, macOS, or Linux. Optional: Hugging Face account for Hub integration.
+                                    <div class="mt-2"><strong>Offline Mode:</strong> Disables Hugging Face Hub actions and RunPod training; the app enforces local-only workflows.</div>
                                 </div>
                             </div>
                         </div>
@@ -755,7 +756,7 @@ flet run src/main.py</code></pre>
                                 
                                 <h5 class="mt-4">Workflow</h5>
                                 <ol>
-                                    <li>Select a database session from your scrape history or a Hugging Face dataset</li>
+                                    <li>Select a database session from your scrape history</li>
                                     <li>Configure split ratios with sliders (train/val/test)</li>
                                     <li>Set shuffle and random seed for reproducibility</li>
                                     <li>Click <strong>Build Dataset</strong> to create splits</li>
@@ -826,13 +827,13 @@ flet run src/main.py</code></pre>
                         <div class="card shadow-sm border-0">
                             <div class="card-body p-4">
                                 <h3 class="mb-4"><i class="bi bi-chat-dots text-primary me-2"></i>Inference Tab</h3>
-                                <p class="text-muted">Run local inference against your fine-tuned adapters with prompt history and Full Chat View.</p>
+                                <p class="text-muted">Run local inference against adapters from completed training runs with prompt history and Full Chat View.</p>
                                 
                                 <img src="img/ff_inferance.png" alt="Inference Tab Screenshot" class="img-fluid rounded shadow-sm mb-4" style="max-height: 350px;">
                                 
                                 <h5 class="mt-4">Features</h5>
                                 <ul>
-                                    <li><strong>Adapter Selection:</strong> Point to any LoRA adapter directory or select from training runs</li>
+                                    <li><strong>Training run selection:</strong> Choose a completed training run (FineFoundry loads the adapter path automatically)</li>
                                     <li><strong>Instant Validation:</strong> Verify adapter files before loading</li>
                                     <li><strong>Dataset Selector:</strong> Sample prompts from any saved dataset in the database</li>
                                     <li><strong>Sample Prompts:</strong> Get 5 random prompts from selected dataset for quick testing</li>
@@ -861,7 +862,7 @@ flet run src/main.py</code></pre>
                         <div class="card shadow-sm border-0">
                             <div class="card-body p-4">
                                 <h3 class="mb-4"><i class="bi bi-shuffle text-primary me-2"></i>Merge Datasets</h3>
-                                <p class="text-muted">Combine multiple database sessions or Hugging Face datasets into a unified training set.</p>
+                                <p class="text-muted">Combine multiple database sessions (and optionally Hugging Face datasets when online) into a unified training set.</p>
                                 
                                 <img src="img/ff_merge.png" alt="Merge Datasets Tab Screenshot" class="img-fluid rounded shadow-sm mb-4" style="max-height: 350px;">
                                 
